@@ -52,7 +52,7 @@
 \shortcut idx
 \color #008000
 \end_index
-\secnumdepth -2
+\secnumdepth 2
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
@@ -86,11 +86,11 @@ Robin Solignac
 \end_layout
 
 \begin_layout Section*
-Cousrse grading system
+Course grading system
 \end_layout
 
 \begin_layout Itemize
-4 assigment 15%
+4 assignment 15%
 \end_layout
 
 \begin_layout Itemize
@@ -121,8 +121,8 @@ Data Compression and A/D quantization
 
 \begin_deeper
 \begin_layout Itemize
-models of data sources with inherent reduncency and fundamental limit on
- quan tization and compression
+models of data sources with inherent redundancy and fundamental limit on
+ quantization and compression
 \end_layout
 
 \begin_layout Itemize
@@ -149,7 +149,7 @@ compression
 
 \begin_deeper
 \begin_layout Itemize
-huffman codes (JPEG)
+Huffman codes (JPEG)
 \end_layout
 
 \begin_layout Itemize
@@ -162,7 +162,7 @@ run length code
 
 \end_deeper
 \begin_layout Itemize
-pratical
+practical
 \end_layout
 
 \end_deeper
@@ -177,7 +177,7 @@ AM/FM radio:
 
 \begin_deeper
 \begin_layout Itemize
-Modulation techniques, bandwith usage, 
+Modulation techniques, bandwidth usage, 
 \end_layout
 
 \begin_layout Itemize
@@ -218,7 +218,7 @@ entropy
 \end_layout
 
 \begin_layout Itemize
-capacity of channal: limit on reliable transmistion
+capacity of channel: limit on reliable transmission
 \end_layout
 
 \begin_layout Itemize
@@ -226,5 +226,108 @@ quantization: ray distortion result
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Data compression and Quantization
+\end_layout
+
+\begin_layout Section
+Data Compression
+\end_layout
+
+\begin_layout Paragraph
+Objectives:
+\end_layout
+
+\begin_layout Enumerate
+Original file = decompressed File
+\end_layout
+
+\begin_layout Enumerate
+Efficiency, 3:1, 2:1 compression ratio
+\end_layout
+
+\begin_layout Paragraph
+Questions:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q1: What is the limit on compression efficiency 
+\emph on
+on average ? 
+\emph default
+(awnsers:
+\emph on
+ Entropy
+\emph default
+ of data source is the limit)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q2: How to do compression/decompression in practice
+\end_layout
+
+\begin_layout Subsection
+Model of data source
+\end_layout
+
+\begin_layout Standard
+Random sequence of symbols is emitted by data source.
+\end_layout
+
+\begin_layout Paragraph
+Source alphabet:
+\end_layout
+
+\begin_layout Standard
+Emmited symbols are member, and constitute the 
+\emph on
+source alphabet
+\end_layout
+
+\begin_layout Paragraph
+Source probabilites:
+\end_layout
+
+\begin_layout Standard
+probalities of showing of each symbols.
+\end_layout
+
+\begin_layout Itemize
+Memoryless source: symbols are independently generated
+\end_layout
+
+\begin_layout Itemize
+Source with memory: better model.
+ ex: Markov source
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Markov model are use in speech copression 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
