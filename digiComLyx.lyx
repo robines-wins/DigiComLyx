@@ -54,8 +54,8 @@
 \end_index
 \secnumdepth 2
 \tocdepth 3
-\paragraph_separation indent
-\paragraph_indentation default
+\paragraph_separation skip
+\defskip medskip
 \quotes_language english
 \papercolumns 1
 \papersides 1
@@ -242,12 +242,12 @@ LatexCommand tableofcontents
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Part
 Data compression and Quantization
 \end_layout
 
-\begin_layout Section
-Data Compression
+\begin_layout Chapter
+Lossless data compression
 \end_layout
 
 \begin_layout Paragraph
@@ -324,6 +324,472 @@ status open
 Markov model are use in speech compression 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+History
+\end_layout
+
+\begin_layout Paragraph
+Morse code:
+\end_layout
+
+\begin_layout Standard
+At the beginning: morse code.
+ The telegraph (1840's) trough cable over sea floor.
+ Use translation of english alphabet to binary (ternary) symbols.
+ and they want the frequency character should be short in binary (i.e E =
+ .
+ ).
+ So they use probabilities: empirically calculated from frequencies in books
+\end_layout
+
+\begin_layout Paragraph
+earlier compression: (1600)
+\end_layout
+
+\begin_layout Standard
+Used shutter for transmission with UK of royal command.
+ pattern on 4x4 windows (preset message) message send optically and retransmit
+ via relay station.
+ so 16 bits for each message, but message of different length, The longest:
+ 
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Quotes eld
+\end_inset
+
+by the order of the her/this majesty king/queen the prisoner is to be executed
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+kind of compression:
+\end_layout
+
+\begin_layout Itemize
+Fixed to variable
+\end_layout
+
+\begin_layout Itemize
+variable to fixed (1980's)
+\end_layout
+
+\begin_layout Itemize
+variable to variable (zip files)
+\end_layout
+
+\begin_layout Itemize
+fixed to fixed (2000), turbo compression
+\end_layout
+
+\begin_layout Paragraph
+Information Entropy:
+\end_layout
+
+\begin_layout Standard
+How much can I compress the most ? 
+\end_layout
+
+\begin_layout Standard
+answer: in 1948 Shannon found (in AT&T/Bell labs) the limit to be the 
+\emph on
+entropy 
+\emph default
+of the source.
+ Cannot compress to fewer bit bits per symbol than entropy
+\end_layout
+
+\begin_layout Section
+Entropy limit on compression
+\end_layout
+
+\begin_layout Itemize
+how to calculate it and use it ?
+\end_layout
+
+\begin_layout Itemize
+why is it true?
+\end_layout
+
+\begin_layout Subsection
+Definition:
+\end_layout
+
+\begin_layout Standard
+For a discrete memoryless source 
+\begin_inset Formula $X$
+\end_inset
+
+ with an alphabet 
+\begin_inset Formula $A=\left\{ a_{1},\ldots,a_{n}\right\} $
+\end_inset
+
+ and source probabilities 
+\begin_inset Formula $p_{1}=P(a_{1}),\ldots p_{n}=P(a_{n})$
+\end_inset
+
+, the entropy of the source is 
+\begin_inset Formula 
+\[
+H(X)=\sum_{i=1}^{n}p_{i}\log_{2}\left(\frac{1}{p_{i}}\right)=E_{p_{x}}\left(\log_{2}\frac{1}{p_{x}}\right)
+\]
+
+\end_inset
+
+in bits/symbols.
+\end_layout
+
+\begin_layout Paragraph
+comment:
+\end_layout
+
+\begin_layout Enumerate
+easy to evaluate
+\end_layout
+
+\begin_layout Enumerate
+units: Bits (
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+), bytes (
+\begin_inset Formula $\log_{8}$
+\end_inset
+
+) or natural units (
+\begin_inset Formula $\ln$
+\end_inset
+
+), ...
+\end_layout
+
+\begin_layout Enumerate
+connected to compression 
+\end_layout
+
+\begin_layout Subsection
+Lossless compression theorem
+\end_layout
+
+\begin_layout Standard
+For discrete memoryless source 
+\begin_inset Formula $X$
+\end_inset
+
+ with entropy 
+\begin_inset Formula $H(x)$
+\end_inset
+
+, you cannot compress to less than 
+\begin_inset Formula $H(x)$
+\end_inset
+
+ bits.
+ And this level can be achieved.
+\end_layout
+
+\begin_layout Paragraph
+comments:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H(x)$
+\end_inset
+
+ is important, how big/small can it be ? (Maximum when all symbols have
+ the same probability)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+we define 
+\begin_inset Formula $0\log0=0$
+\end_inset
+
+ Bits/Symbols
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Why is it the limit ?
+\end_layout
+
+\begin_layout Paragraph
+properties of 
+\begin_inset Formula $H(X)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $0\leq H(X)\leq\log_{2}M$
+\end_inset
+
+.
+ With 
+\begin_inset Formula $M$
+\end_inset
+
+ the number of symbol
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H(X)=p_{1}\log_{2}\frac{1}{p_{1}},\ldots,p_{n}\log_{2}\frac{1}{p_{n}}=f\left(p_{1},\ldots,p_{n}\right)$
+\end_inset
+
+ is a concave function 
+\end_layout
+
+\begin_layout Subparagraph
+proof of 
+\begin_inset Formula $H(X)\geq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+since it'a an average of non negative quantities :
+\begin_inset Formula $0\leq p_{i}\leq1$
+\end_inset
+
+ so 
+\begin_inset Formula $\log_{2}\frac{1}{p_{i}}\geq0$
+\end_inset
+
+ and so 
+\begin_inset Formula $p_{i}\log_{2}\frac{1}{p_{i}}\geq0$
+\end_inset
+
+ then it will be positive.
+ it's equals 
+\begin_inset Formula $0$
+\end_inset
+
+ only when 
+\begin_inset Formula $\exists n\,:\,p_{n}=1\wedge p_{n}=0\forall m\neq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Compression algorithm in practice
+\end_layout
+
+\begin_layout Paragraph
+Motivation
+\end_layout
+
+\begin_layout Standard
+Start with fixed to variable length compression (like Morse-code)
+\end_layout
+
+\begin_layout Standard
+compression table:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Source symbols 
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P(X=i)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+compressed binary string
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $000$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.29$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ex : CCCBCCABCCBCC will give 111011100001110111
+\end_layout
+
+\begin_layout Standard
+So 
+\begin_inset Formula $18$
+\end_inset
+
+ bits per 
+\begin_inset Formula $13$
+\end_inset
+
+ source symbol are used: 
+\begin_inset Formula $1.38$
+\end_inset
+
+ Bits/symbols.
+ with fixed to fixed (ascii like symbols representation) we will have 
+\begin_inset Formula $2$
+\end_inset
+
+ bits/symbols.
+\end_layout
+
+\begin_layout Standard
+let's compare to 
+\begin_inset Formula $H(X)$
+\end_inset
+
+.
+ 
+\begin_inset Formula $H(X)=0.94$
 \end_inset
 
 
