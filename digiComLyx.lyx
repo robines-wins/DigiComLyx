@@ -272,7 +272,7 @@ Q1: What is the limit on compression efficiency
 \emph on
 on average ? 
 \emph default
-(awnsers:
+(answers:
 \emph on
  Entropy
 \emph default
@@ -297,17 +297,17 @@ Source alphabet:
 \end_layout
 
 \begin_layout Standard
-Emmited symbols are member, and constitute the 
+Emitted symbols are member, and constitute the 
 \emph on
 source alphabet
 \end_layout
 
 \begin_layout Paragraph
-Source probabilites:
+Source probabilities:
 \end_layout
 
 \begin_layout Standard
-probalities of showing of each symbols.
+probabilities of showing of each symbols.
 \end_layout
 
 \begin_layout Itemize
@@ -321,7 +321,7 @@ Source with memory: better model.
 status open
 
 \begin_layout Plain Layout
-Markov model are use in speech copression 
+Markov model are use in speech compression 
 \end_layout
 
 \end_inset
