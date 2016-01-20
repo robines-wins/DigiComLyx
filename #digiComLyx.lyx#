@@ -865,8 +865,7 @@ Pratical design condition
 \end_layout
 
 \begin_layout Standard
-given sources a1 a2 a3...aM with probabilities p1, p2, p3..pM can I make a prefix
- code with lenghs l1, l2, l3 given
+given sources a1 a2 a3...aM
 \end_layout
 
 \end_body
