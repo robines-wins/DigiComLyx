@@ -796,48 +796,51 @@ let's compare to
 \end_layout
 
 \begin_layout Standard
-20/01
-\end_layout
+Lower limit on compression is 
+\begin_inset Formula $H(X)$
+\end_inset
 
-\begin_layout Standard
-Lower limit on compression is H(X) - Entropy of the source
+ - Entropy of the source
 \end_layout
 
 \begin_layout Standard
 Specific codes: Fixed to variable length
 \end_layout
 
-\begin_layout Standard
-Efficiency of this code E(L) (average number of compressed bits used per
- store symbols)
+\begin_layout Subsection
+Uniquely decodable and Prefix Code:
+\end_layout
+
+\begin_layout Description
+Uniquely-decodable: Ability to decompress without use of commas
+\end_layout
+
+\begin_layout Description
+Prefix-codes: No binary codeword is a prefix of another codeword
 \end_layout
 
 \begin_layout Standard
-E(L) = 
-\begin_inset Formula $\sum pi*li$
-\end_inset
-
- (as small as possible)
+Prefix codes are 
+\emph on
+always
+\emph default
+ uniquely decodable (PC imply UD)
 \end_layout
 
 \begin_layout Standard
-Ability to decompress without use of commas
+UD <=> Every compressed file can be uniquely decompressed
 \end_layout
 
 \begin_layout Standard
-Prefix codes: uniquely decodable
+moreover: can be decode instantly without buffering
 \end_layout
 
-\begin_layout Standard
-UD <=> Every compressed file can be unliquely decompressed
+\begin_layout Subsection
+MacMillan inequality:
 \end_layout
 
-\begin_layout Standard
-Prefix codes: No binary codeword is a prefix of another codeword
-\end_layout
-
-\begin_layout Standard
-Decode instantly without buffering
+\begin_layout Paragraph
+Pratical design condition:
 \end_layout
 
 \begin_layout Standard
@@ -857,16 +860,141 @@ a3 - 000
 \end_layout
 
 \begin_layout Standard
-Focus on prefix codes & make then compress to H(x)
-\end_layout
+Focus on prefix codes & make then compress to 
+\begin_inset Formula $H(x)$
+\end_inset
 
-\begin_layout Subparagraph
-Pratical design condition
+
 \end_layout
 
 \begin_layout Standard
 given sources a1 a2 a3...aM with probabilities p1, p2, p3..pM can I make a prefix
- code with lenghs l1, l2, l3 given
+ code with lenghs l1, l2, l3 ? 
+\end_layout
+
+\begin_layout Standard
+Efficiency of this code 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ (average number of compressed bits used per store symbols).
+ 
+\begin_inset Formula $E(L)=\sum p_{i}*l_{i}$
+\end_inset
+
+( we want it as small as possible)
+\end_layout
+
+\begin_layout Standard
+Even if wanted code fulfill 
+\begin_inset Formula $E(L)\geq H(x)$
+\end_inset
+
+, sometime no matter how hard you try you will not get a prefix code or
+ UD code
+\emph on
+ 
+\end_layout
+
+\begin_layout Paragraph
+The MacMillan inequality:
+\end_layout
+
+\begin_layout Standard
+To see if a such code can be, let's see if ti satisfy the inequality: 
+\begin_inset Formula 
+\[
+2^{-l_{1}}+2^{-l_{2}}+\cdots+2^{-l_{n}}\leq1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+if it satisfy this inequality we can design a binary then prefix (UD) code
+\end_layout
+
+\begin_layout Itemize
+if it fails for 
+\begin_inset Formula $l_{1},\ldots,l_{n}$
+\end_inset
+
+ a prefix (or UD) code cannot be created/Designed
+\end_layout
+
+\begin_layout Subsection
+Huffman codes
+\end_layout
+
+\begin_layout Standard
+Now we need a method to design a good prefix code.
+\end_layout
+
+\begin_layout Standard
+Given 
+\begin_inset Formula $p_{1},\ldots,p_{n}$
+\end_inset
+
+ design a prefix code who satisfy the MacMillan inequality
+\end_layout
+
+\begin_layout Enumerate
+put symbols-nodes for each symbols at the leaf of a tree, there all free
+ they weight is 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+group the two free nodes who weight sum is the smaller, theses two node
+ are not free anymore, the new node is, with weigth equal to the sum of
+ connected node
+\end_layout
+
+\begin_layout Enumerate
+repeat 2.
+ until there's only one free node left.
+\end_layout
+
+\begin_layout Enumerate
+On each none leaf node, label one of it's leaving branch with 
+\begin_inset Formula $1$
+\end_inset
+
+ and the other with 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+code of each symbol is the sequence made by the label on the branch who
+ made the path 
+\emph on
+from 
+\emph default
+roots 
+\emph on
+to
+\emph default
+ the symbols
+\end_layout
+
+\begin_layout Standard
+the tree structure guaranties that the prefix condition will hold, So it
+ can be used to decompress data: just go along the tree from roots and at
+ each step take the labeled branch who match the current symbols, then read
+ next symbols until we reach a leaf: the decoded symbols.
+ Then start again from roots
+\end_layout
+
+\begin_layout Standard
+Next step: Answers the why's (we've done the how's), and non Binary codes
 \end_layout
 
 \end_body
