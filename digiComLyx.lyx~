@@ -807,19 +807,6 @@ Lower limit on compression is
 Specific codes: Fixed to variable length
 \end_layout
 
-\begin_layout Standard
-Efficiency of this code 
-\begin_inset Formula $E(L)$
-\end_inset
-
- (average number of compressed bits used per store symbols).
- 
-\begin_inset Formula $E(L)=\sum p_{i}*l_{i}$
-\end_inset
-
-( we want it as small as possible)
-\end_layout
-
 \begin_layout Subsection
 Uniquely decodable and Prefix Code:
 \end_layout
@@ -873,12 +860,29 @@ a3 - 000
 \end_layout
 
 \begin_layout Standard
-Focus on prefix codes & make then compress to H(x)
+Focus on prefix codes & make then compress to 
+\begin_inset Formula $H(x)$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 given sources a1 a2 a3...aM with probabilities p1, p2, p3..pM can I make a prefix
  code with lenghs l1, l2, l3 ? 
+\end_layout
+
+\begin_layout Standard
+Efficiency of this code 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ (average number of compressed bits used per store symbols).
+ 
+\begin_inset Formula $E(L)=\sum p_{i}*l_{i}$
+\end_inset
+
+( we want it as small as possible)
 \end_layout
 
 \begin_layout Standard
@@ -991,6 +995,25 @@ the tree structure guaranties that the prefix condition will hold, So it
 
 \begin_layout Standard
 Next step: Answers the why's (we've done the how's), and non Binary codes
+\end_layout
+
+\begin_layout Standard
+Main Result: H(X) 
+\begin_inset Formula $\leq$
+\end_inset
+
+E(L) 
+\begin_inset Formula $\leq$
+\end_inset
+
+H(X)+1 for prefix or uniquely decodable codes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum_{i=1}^{M}2^{-li}\leq1$
+\end_inset
+
+ : this inequality holds <=> a prefix code can be find
 \end_layout
 
 \end_body

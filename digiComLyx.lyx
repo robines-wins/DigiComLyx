@@ -1016,5 +1016,83 @@ H(X)+1 for prefix or uniquely decodable codes
  : this inequality holds <=> a prefix code can be find
 \end_layout
 
+\begin_layout Standard
+Huffman codes/ Algorithm
+\end_layout
+
+\begin_layout Standard
+Recursion
+\end_layout
+
+\begin_layout Standard
+Q: Will this code compress to E(L)=H(X)?
+\end_layout
+
+\begin_layout Standard
+Answer: sometimes yes, sometimes no, but it can be fixed to do it.
+ 
+\end_layout
+
+\begin_layout Standard
+Ex1: Binary Huffman 
+\end_layout
+
+\begin_layout Standard
+For source : p1 = 1/2 
+\begin_inset Quotes eld
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+ p2= 1/4 
+\begin_inset Quotes eld
+\end_inset
+
+10
+\begin_inset Quotes erd
+\end_inset
+
+ p3=1/8 
+\begin_inset Quotes eld
+\end_inset
+
+110
+\begin_inset Quotes erd
+\end_inset
+
+ p4=1/8 
+\begin_inset Quotes eld
+\end_inset
+
+111
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+merge a3 and a4, (probability 1/4), then a2 and a3-a4
+\end_layout
+
+\begin_layout Standard
+E(L) = 1/2*1 + 1/4*2+1/8*2*3= 1.75 bits/symbols
+\end_layout
+
+\begin_layout Standard
+H(x) = 1.75 bits/symbols so best possible compression was achieved with huffman
+ code
+\end_layout
+
+\begin_layout Standard
+EX2: Huffman code is far from entropy
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document
