@@ -1091,7 +1091,27 @@ EX2: Huffman code is far from entropy
 \end_layout
 
 \begin_layout Standard
+1: Pb: 2
+\begin_inset Formula $^{-10}$
+\end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+0 : PA = 1 - 2
+\begin_inset Formula $^{-10}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E(L) = 1 bits/Symbol
+\end_layout
+
+\begin_layout Standard
+H(x) = 0.011 bits/symbol
 \end_layout
 
 \end_body
