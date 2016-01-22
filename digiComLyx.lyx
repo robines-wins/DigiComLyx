@@ -997,16 +997,15 @@ the tree structure guaranties that the prefix condition will hold, So it
 Next step: Answers the why's (we've done the how's), and non Binary codes
 \end_layout
 
+\begin_layout Subsubsection
+Main Result:
+\end_layout
+
 \begin_layout Standard
-Main Result: H(X) 
-\begin_inset Formula $\leq$
+\begin_inset Formula $H(X)\leq E(L)\leq H(X)+1$
 \end_inset
 
-E(L) 
-\begin_inset Formula $\leq$
-\end_inset
-
-H(X)+1 for prefix or uniquely decodable codes
+for prefix or uniquely decodable codes (to be prove)
 \end_layout
 
 \begin_layout Standard
@@ -1024,16 +1023,28 @@ Huffman codes/ Algorithm
 Recursion
 \end_layout
 
-\begin_layout Standard
-Q: Will this code compress to E(L)=H(X)?
+\begin_layout Paragraph
+Question:
 \end_layout
 
 \begin_layout Standard
+Will this code compress to 
+\begin_inset Formula $E(L)=H(X)$
+\end_inset
+
+?
+\begin_inset Newline newline
+\end_inset
+
 Answer: sometimes yes, sometimes no, but it can be fixed to do it.
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
+Example:
+\end_layout
+
+\begin_layout Paragraph
 Ex1: Binary Huffman 
 \end_layout
 
@@ -1078,15 +1089,20 @@ merge a3 and a4, (probability 1/4), then a2 and a3-a4
 \end_layout
 
 \begin_layout Standard
-E(L) = 1/2*1 + 1/4*2+1/8*2*3= 1.75 bits/symbols
+\begin_inset Formula $E(L)=\frac{1}{2}*1+\frac{1}{4}*2+\frac{1}{8}*2*3=1.75$
+\end_inset
+
+ Bits/symbols
 \end_layout
 
 \begin_layout Standard
-H(x) = 1.75 bits/symbols so best possible compression was achieved with huffman
- code
+\begin_inset Formula $H(x)=1.75$
+\end_inset
+
+bits/symbols so best possible compression was achieved with Huffman code
 \end_layout
 
-\begin_layout Standard
+\begin_layout Paragraph
 EX2: Huffman code is far from entropy
 \end_layout
 
@@ -1112,6 +1128,222 @@ E(L) = 1 bits/Symbol
 
 \begin_layout Standard
 H(x) = 0.011 bits/symbol
+\end_layout
+
+\begin_layout Paragraph
+Ex3: Vectorization of Huffman code
+\end_layout
+
+\begin_layout Standard
+Pairs source symbols and redo Huffman 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2^{-20}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-2^{-10})2^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-2^{-10})2^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-2^{-10})(1-2^{-10})=0.998$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum p_{i}*l_{i}\approx1$
+\end_inset
+
+ Bits for 2 pixels so 
+\begin_inset Formula $E(L)\approx0.5$
+\end_inset
+
+ Bits/pixel
+\end_layout
+
+\begin_layout Subparagraph
+Observe: 
+\end_layout
+
+\begin_layout Standard
+one can vectorize 3 pixels as new symbol or more, but complexity (table
+ will be of length 
+\begin_inset Formula $2^{\mbox{Vector length}}$
+\end_inset
+
+) can be an issue
+\end_layout
+
+\begin_layout Subsection
+Shanon-Fano code
+\end_layout
+
+\begin_layout Paragraph
+Objective
+\end_layout
+
+\begin_layout Standard
+Show that I can always take a prefix code such taht 
+\begin_inset Formula $E(X)\leq H(X)+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Given 
+\begin_inset Formula $p_{1},\ldots,p_{M}$
+\end_inset
+
+ source probability, chose 
+\begin_inset Formula $l_{i}=\left\lceil \log_{2}\frac{1}{p_{i}}\right\rceil \,\forall i$
+\end_inset
+
+.
+ Can we make a prefix code with these 
+\begin_inset Formula $l_{i}$
+\end_inset
+
+'s ? Yes and 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ of this code is the is less than 
+\begin_inset Formula $H(X)+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+proof:
+\end_layout
+
+\begin_layout Standard
+For specs 
+\begin_inset Formula $l_{i}=\left\lceil \log_{2}\frac{1}{p_{i}}\right\rceil $
+\end_inset
+
+.
+ just need to check if 
+\begin_inset Formula $\sum_{i=1}^{M}2^{-l_{i}}$
+\end_inset
+
+ if yes, it has a prefix code
+\end_layout
+
+\begin_layout Standard
+In general: 
+\begin_inset Formula $\sum_{i=1}^{M}2^{-l_{i}}=2^{-\left\lceil \log_{2}\frac{1}{p_{1}}\right\rceil }+\cdots+2^{-\left\lceil \log_{2}\frac{1}{p_{i}}\right\rceil }\leq2^{-\log_{2}\frac{1}{p_{1}}}+\cdots+2^{-\log_{2}\frac{1}{p_{M}}}=2^{\log_{2}}+\cdots+2^{\log_{2}p_{m}}=p_{1}+\cdots+p_{M}=1$
+\end_inset
+
+.
+ so a prefix code exist
+\end_layout
+
+\begin_layout Standard
+And because 
+\begin_inset Formula $\left\lceil \log_{2}x\right\rceil <\log_{2}x+1$
+\end_inset
+
+ so 
+\begin_inset Formula $E(L)<p_{1}\log_{2}\frac{1}{p_{i}}+\cdots+p_{M}\log_{2}\frac{1}{pM}+1p_{1}+\cdots+1p_{M}=H(X)+1$
+\end_inset
+
+
 \end_layout
 
 \end_body
