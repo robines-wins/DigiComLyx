@@ -1331,9 +1331,10 @@ In general:
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
+ so a prefix code exist
+\end_layout
 
+\begin_layout Standard
 And because 
 \begin_inset Formula $\left\lceil \log_{2}x\right\rceil <\log_{2}x+1$
 \end_inset
