@@ -1677,5 +1677,16 @@ Stationary-ergonic sources: P(x1=ai)=Pi (markov sources are special cases
 P(X1X2...XN = a1a1a2...a1)=0.03 Probabilities of N lenght vectors, for all N.
 \end_layout
 
+\begin_layout Standard
+Average entropu is the limit on compression
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $lim_{n-\infty}$
+\end_inset
+
+1/N *H(X1X2X3...XN) = ....
+\end_layout
+
 \end_body
 \end_document

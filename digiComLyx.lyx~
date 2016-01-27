@@ -1669,7 +1669,8 @@ Depiction of Markov Sources:
 \end_layout
 
 \begin_layout Standard
-Stationary-ergonic sources: P(x1=ai)=Pi
+Stationary-ergonic sources: P(x1=ai)=Pi (markov sources are special cases
+ of this)
 \end_layout
 
 \begin_layout Standard
