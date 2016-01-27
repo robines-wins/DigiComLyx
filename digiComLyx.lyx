@@ -1354,6 +1354,10 @@ Tutorial:
 \end_layout
 
 \begin_layout Standard
+Exercice 1)
+\end_layout
+
+\begin_layout Standard
 a)
 \end_layout
 
@@ -1409,6 +1413,268 @@ c) Calculate the entropy: 1)H(x)=
 
 \begin_layout Standard
 (d) without compression we would have 1) 2 ternary alphabets/source symbol
+\end_layout
+
+\begin_layout Standard
+Exercice 2)
+\end_layout
+
+\begin_layout Standard
+(a) a code that is uniquely decodable but not prefix:
+\end_layout
+
+\begin_layout Standard
+A1:0; A2:01
+\end_layout
+
+\begin_layout Standard
+(b) Can there be a prefix code that is not uniquely decodable? 
+\end_layout
+
+\begin_layout Standard
+Conversion:log
+\begin_inset Formula $_{2}(x)$
+\end_inset
+
+=
+\begin_inset Formula $\frac{ln(x)}{ln(2)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Conversion from H(x)
+\begin_inset Formula $_{binary}$
+\end_inset
+
+ to H(x)
+\begin_inset Formula $_{ternary}$
+\end_inset
+
+ : ln(2)/ln(3)*Hbin(x) = Hter(x) (just make the inequalities equals)
+\end_layout
+
+\begin_layout Standard
+__________________________________________________________
+\end_layout
+
+\begin_layout Standard
+Data Compression
+\end_layout
+
+\begin_layout Standard
+Plan : 1) H(X)=E(L) Bits per symbol for fixed to var code
+\end_layout
+
+\begin_layout Standard
+2) RNN-length codes for slan/fax/etc..
+ 
+\end_layout
+
+\begin_layout Standard
+3) Sources with memory and their compression
+\end_layout
+
+\begin_layout Standard
+4) Lempez-ziv (zip) algorithm
+\end_layout
+
+\begin_layout Standard
+Fixed-to-variable length compression code (Huffman and vectorized Huffman)
+\end_layout
+
+\begin_layout Standard
+H(x) 
+\begin_inset Formula $\leq$
+\end_inset
+
+ E(L) 
+\begin_inset Formula $\leq$
+\end_inset
+
+H(X)+1/N
+\end_layout
+
+\begin_layout Standard
+H(X) 
+\begin_inset Formula $\leq$
+\end_inset
+
+ E(L)
+\end_layout
+
+\begin_layout Standard
+Show: E(L) - H(X) =
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum_{i=1}^{L}pi*li-\mbox{\ensuremath{\sum_{i=1}^{M1}pi*log_{2}1/pi}=\ensuremath{\sum pi(log_{2}(1/2^{-li})+log_{2}(pi)}\ensuremath{=1/ln(2)\sum_{i=1}^{M}pi*ln(pi/2^{-li})=ln(x)\geq1-1/x\geq1/ln(2)\mbox{\ensuremath{\sum pi(1-2^{-li}/pi)} }}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(we see that the result is positive) 
+\begin_inset Formula $\geq1/0.69(1-\sum2^{-li})\geq0$
+\end_inset
+
+ (to demonstrate in an assignement)
+\end_layout
+
+\begin_layout Standard
+RVN Length codes:
+\end_layout
+
+\begin_layout Standard
+Motivation/Story -> Fax Machine: 
+\end_layout
+
+\begin_layout Standard
+Typical Sequence : 000000000000011000000111100000
+\end_layout
+
+\begin_layout Standard
+variable length source string
+\end_layout
+
+\begin_layout Standard
+8 source strings:
+\end_layout
+
+\begin_layout Standard
+1 - a1 - 000
+\end_layout
+
+\begin_layout Standard
+01 - 001
+\end_layout
+
+\begin_layout Standard
+001
+\end_layout
+
+\begin_layout Standard
+0001
+\end_layout
+
+\begin_layout Standard
+00001
+\end_layout
+
+\begin_layout Standard
+000001
+\end_layout
+
+\begin_layout Standard
+0000001
+\end_layout
+
+\begin_layout Standard
+00000000 - a7 - 111 (here is the money)
+\end_layout
+
+\begin_layout Standard
+Exemple: Scan : 
+\begin_inset Formula $0001(a3)/1(a\text{0})/$
+\end_inset
+
+0000000(a7)/0001/01
+\end_layout
+
+\begin_layout Standard
+Uniquely decodable but how efficient? 
+\end_layout
+
+\begin_layout Standard
+po=0.99; p1=0.01
+\end_layout
+
+\begin_layout Standard
+E(L)=p1*3+pop1*3/2+po*po*p1*3/3+....3/4+...3/5..
+\end_layout
+
+\begin_layout Standard
+Lesson: it works & is better than Huffman code, and less complex than full
+ vectorization.
+ 2
+\begin_inset Formula $^{7}$
+\end_inset
+
+vectors
+\end_layout
+
+\begin_layout Standard
+We need a7 -> 1 bits.
+ So after apply an huffman code.
+\end_layout
+
+\begin_layout Standard
+SOURCE WITH MEMORY & THEIR COMPRESSION
+\end_layout
+
+\begin_layout Standard
+Motivation: practical sources have memory (not iid) (english, scans, drawings)
+\end_layout
+
+\begin_layout Standard
+2) the memoryless results extend to sources with memory 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(X)\leq E(L)\leq H(X)+\varepsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Data source with memory: 
+\end_layout
+
+\begin_layout Standard
+Markov sources: - Memory one sources
+\end_layout
+
+\begin_layout Standard
+X1,X2,..,XN (source string generated)
+\end_layout
+
+\begin_layout Standard
+Source alphabet q1,q2,...,qM
+\end_layout
+
+\begin_layout Standard
+P(
+\begin_inset Formula $X_{n+1}$
+\end_inset
+
+
+\begin_inset Formula $=ai|X_{n}=a0)$
+\end_inset
+
+=Pi
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(X_{n+1}=0|X_{n}=0)=0.999$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depiction of Markov Sources:
+\end_layout
+
+\begin_layout Standard
+Stationary-ergonic sources: P(x1=ai)=Pi (markov sources are special cases
+ of this)
+\end_layout
+
+\begin_layout Standard
+P(X1X2...XN = a1a1a2...a1)=0.03 Probabilities of N lenght vectors, for all N.
 \end_layout
 
 \end_body
