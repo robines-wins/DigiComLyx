@@ -1350,7 +1350,433 @@ And because
 \end_layout
 
 \begin_layout Standard
-Tutorial:
+__________________________________________________________
+\end_layout
+
+\begin_layout Section
+Data Compression
+\end_layout
+
+\begin_layout Standard
+Plan : 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H(X)=E(L)$
+\end_inset
+
+ Bits per symbol for fixed to var code
+\end_layout
+
+\begin_layout Enumerate
+RNN-length codes for slan/fax/etc..
+ 
+\end_layout
+
+\begin_layout Enumerate
+Sources with memory and their compression
+\end_layout
+
+\begin_layout Enumerate
+Lempez-ziv (zip) algorithm
+\end_layout
+
+\begin_layout Subsection
+Fixed-to-variable length compression code (Huffman and vectorized Huffman)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(x)\leq E(L)\leq H(X)+\frac{1}{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(X)\leq E(L)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Show:
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E(L)-H(X) & = & \sum_{i=1}^{L}pi*li-\mbox{\ensuremath{\sum_{i=1}^{M1}pi*log_{2}\left(\frac{1}{p_{i}}\right)}=\ensuremath{\sum p_{i}\left(\log_{2}\left(\frac{p_{i}}{2^{-l_{i}}}\right)+log_{2}(pi)\right)}}\\
+ & = & \ensuremath{\frac{1}{\ln(2)}\sum_{i=1}^{M}p_{i}*\ln\left(\frac{p_{i}}{2^{-l_{i}}}\right)}\\
+ & = & \ln(x)\geq1-1/x\geq\frac{1}{\ln(2)}\mbox{\ensuremath{\sum p_{i}\left(1-\frac{2^{-li}}{p_{i}}\right)} }
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(we see that the result is positive) 
+\begin_inset Formula $\geq1/0.69(1-\sum2^{-li})\geq0$
+\end_inset
+
+ (to demonstrate in an assignment)
+\end_layout
+
+\begin_layout Subsection
+RVN Length codes:
+\end_layout
+
+\begin_layout Standard
+Motivation/Story -> Fax Machine: 
+\end_layout
+
+\begin_layout Standard
+Typical Sequence : 000000000000011000000111100000
+\end_layout
+
+\begin_layout Standard
+variable length source string
+\end_layout
+
+\begin_layout Standard
+8 source strings translate to a fixed code:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+000
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+010
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+011
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+00001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+000001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0000001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+110
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0000000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+111
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(here is the money)
+\end_layout
+
+\begin_layout Standard
+Example: Scan : 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0001(a3)/1(a0)/
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0000000(a7)/0001/01
+\end_layout
+
+\begin_layout Standard
+Uniquely decodable but how efficient? 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{0}=0.99$
+\end_inset
+
+; 
+\begin_inset Formula $p1=0.01$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E(L)=p1*3+p_{0}*p_{1}*\frac{3}{2}+p_{0}*p_{0}*p_{1}*\frac{3}{3}+\cdots3/4+\cdots3/5+\cdots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lesson: it works & is better than Huffman code, and less complex than full
+ vectorization.
+ 
+\begin_inset Formula $2^{7}$
+\end_inset
+
+ vectors
+\end_layout
+
+\begin_layout Standard
+We need a7 -> 1 bits.
+ So after apply an Huffman code.
+\end_layout
+
+\begin_layout Subsection
+source with memory and their compression
+\end_layout
+
+\begin_layout Paragraph
+Motivation:
+\end_layout
+
+\begin_layout Standard
+Practical sources have memory (not iid) (english, scans, drawings)
+\end_layout
+
+\begin_layout Standard
+the memoryless results extend to sources with memory 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(X)\leq E(L)\leq H(X)+\varepsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Data source with memory: 
+\end_layout
+
+\begin_layout Standard
+Markov sources: - Memory one sources
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{1},X_{2},\ldots X_{N}$
+\end_inset
+
+(source string generated)
+\end_layout
+
+\begin_layout Standard
+Source alphabet 
+\begin_inset Formula $q1,q2,\ldots,qM$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+P(
+\begin_inset Formula $X_{n+1}$
+\end_inset
+
+
+\begin_inset Formula $=ai|X_{n}=a0)$
+\end_inset
+
+=Pi
+\end_layout
+
+\begin_layout Subsubsection
+Depiction of Markov Sources:
+\end_layout
+
+\begin_layout Standard
+Stationary-Ergodic sources: 
+\begin_inset Formula $P(x_{1}=a_{i})=P_{i}$
+\end_inset
+
+ (Markov sources are special cases of this)
+\end_layout
+
+\begin_layout Standard
+P(X1X2...XN = a1a1a2...a1)=0.03 Probabilities of N length vectors, for all N.
+\end_layout
+
+\begin_layout Standard
+Average entropy is the limit on compression
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $lim_{n-\infty}\frac{1}{N}*H(X_{1},X_{2},X3,\ldots,X_{N})=....$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Tutorial
 \end_layout
 
 \begin_layout Standard
@@ -1453,239 +1879,6 @@ Conversion from H(x)
 \end_inset
 
  : ln(2)/ln(3)*Hbin(x) = Hter(x) (just make the inequalities equals)
-\end_layout
-
-\begin_layout Standard
-__________________________________________________________
-\end_layout
-
-\begin_layout Standard
-Data Compression
-\end_layout
-
-\begin_layout Standard
-Plan : 1) H(X)=E(L) Bits per symbol for fixed to var code
-\end_layout
-
-\begin_layout Standard
-2) RNN-length codes for slan/fax/etc..
- 
-\end_layout
-
-\begin_layout Standard
-3) Sources with memory and their compression
-\end_layout
-
-\begin_layout Standard
-4) Lempez-ziv (zip) algorithm
-\end_layout
-
-\begin_layout Standard
-Fixed-to-variable length compression code (Huffman and vectorized Huffman)
-\end_layout
-
-\begin_layout Standard
-H(x) 
-\begin_inset Formula $\leq$
-\end_inset
-
- E(L) 
-\begin_inset Formula $\leq$
-\end_inset
-
-H(X)+1/N
-\end_layout
-
-\begin_layout Standard
-H(X) 
-\begin_inset Formula $\leq$
-\end_inset
-
- E(L)
-\end_layout
-
-\begin_layout Standard
-Show: E(L) - H(X) =
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\sum_{i=1}^{L}pi*li-\mbox{\ensuremath{\sum_{i=1}^{M1}pi*log_{2}1/pi}=\ensuremath{\sum pi(log_{2}(1/2^{-li})+log_{2}(pi)}\ensuremath{=1/ln(2)\sum_{i=1}^{M}pi*ln(pi/2^{-li})=ln(x)\geq1-1/x\geq1/ln(2)\mbox{\ensuremath{\sum pi(1-2^{-li}/pi)} }}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-(we see that the result is positive) 
-\begin_inset Formula $\geq1/0.69(1-\sum2^{-li})\geq0$
-\end_inset
-
- (to demonstrate in an assignement)
-\end_layout
-
-\begin_layout Standard
-RVN Length codes:
-\end_layout
-
-\begin_layout Standard
-Motivation/Story -> Fax Machine: 
-\end_layout
-
-\begin_layout Standard
-Typical Sequence : 000000000000011000000111100000
-\end_layout
-
-\begin_layout Standard
-variable length source string
-\end_layout
-
-\begin_layout Standard
-8 source strings:
-\end_layout
-
-\begin_layout Standard
-1 - a1 - 000
-\end_layout
-
-\begin_layout Standard
-01 - 001
-\end_layout
-
-\begin_layout Standard
-001
-\end_layout
-
-\begin_layout Standard
-0001
-\end_layout
-
-\begin_layout Standard
-00001
-\end_layout
-
-\begin_layout Standard
-000001
-\end_layout
-
-\begin_layout Standard
-0000001
-\end_layout
-
-\begin_layout Standard
-00000000 - a7 - 111 (here is the money)
-\end_layout
-
-\begin_layout Standard
-Exemple: Scan : 
-\begin_inset Formula $0001(a3)/1(a\text{0})/$
-\end_inset
-
-0000000(a7)/0001/01
-\end_layout
-
-\begin_layout Standard
-Uniquely decodable but how efficient? 
-\end_layout
-
-\begin_layout Standard
-po=0.99; p1=0.01
-\end_layout
-
-\begin_layout Standard
-E(L)=p1*3+pop1*3/2+po*po*p1*3/3+....3/4+...3/5..
-\end_layout
-
-\begin_layout Standard
-Lesson: it works & is better than Huffman code, and less complex than full
- vectorization.
- 2
-\begin_inset Formula $^{7}$
-\end_inset
-
-vectors
-\end_layout
-
-\begin_layout Standard
-We need a7 -> 1 bits.
- So after apply an huffman code.
-\end_layout
-
-\begin_layout Standard
-SOURCE WITH MEMORY & THEIR COMPRESSION
-\end_layout
-
-\begin_layout Standard
-Motivation: practical sources have memory (not iid) (english, scans, drawings)
-\end_layout
-
-\begin_layout Standard
-2) the memoryless results extend to sources with memory 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $H(X)\leq E(L)\leq H(X)+\varepsilon$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Data source with memory: 
-\end_layout
-
-\begin_layout Standard
-Markov sources: - Memory one sources
-\end_layout
-
-\begin_layout Standard
-X1,X2,..,XN (source string generated)
-\end_layout
-
-\begin_layout Standard
-Source alphabet q1,q2,...,qM
-\end_layout
-
-\begin_layout Standard
-P(
-\begin_inset Formula $X_{n+1}$
-\end_inset
-
-
-\begin_inset Formula $=ai|X_{n}=a0)$
-\end_inset
-
-=Pi
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $P(X_{n+1}=0|X_{n}=0)=0.999$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Depiction of Markov Sources:
-\end_layout
-
-\begin_layout Standard
-Stationary-ergonic sources: P(x1=ai)=Pi (markov sources are special cases
- of this)
-\end_layout
-
-\begin_layout Standard
-P(X1X2...XN = a1a1a2...a1)=0.03 Probabilities of N lenght vectors, for all N.
-\end_layout
-
-\begin_layout Standard
-Average entropu is the limit on compression
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $lim_{n-\infty}$
-\end_inset
-
-1/N *H(X1X2X3...XN) = ....
 \end_layout
 
 \end_body
