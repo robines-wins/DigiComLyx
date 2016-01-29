@@ -1703,7 +1703,8 @@ Practical sources have memory (not iid) (english, scans, drawings)
 \end_layout
 
 \begin_layout Standard
-the memoryless results extend to sources with memory 
+the memoryless results extend to sources with memory (The law of large numbers
+ still work)
 \end_layout
 
 \begin_layout Standard
@@ -1717,66 +1718,351 @@ the memoryless results extend to sources with memory
 Data source with memory: 
 \end_layout
 
+\begin_layout Subsubsection
+Markov Sources
+\end_layout
+
 \begin_layout Standard
-Markov sources: - Memory one sources
+Memory one sources
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula $X_{1},X_{2},\ldots X_{N}$
 \end_inset
 
-(source string generated)
+(source string generated), Source alphabet 
+\begin_inset Formula $q1,q2,\ldots,q_{M}$
+\end_inset
+
+ then we have
 \end_layout
 
 \begin_layout Standard
-Source alphabet 
-\begin_inset Formula $q1,q2,\ldots,qM$
+\begin_inset Formula $P(X_{n+1}=q_{i}|X_{n}=q_{j})=p_{ij}$
+\end_inset
+
+ fixed (special case of Stationary-Ergodic)
+\end_layout
+
+\begin_layout Standard
+Average entropy is the limit on compression: 
+\begin_inset Formula $lim_{n-\infty}\frac{1}{N}*H(X_{1},X_{2},X_{3},\ldots,X_{N})$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-P(
-\begin_inset Formula $X_{n+1}$
+See them has a mix of serval sources depending on state, and look at the
+ 
+\emph on
+average entropy
+\emph default
+ of these sources.
+ 
+\end_layout
+
+\begin_layout Standard
+How to compress this sources optimally ?
+\end_layout
+
+\begin_layout Paragraph
+Idea:
+\end_layout
+
+\begin_layout Standard
+Make two (serval) near entropy code, one for each sources in the mixed sources.
+ Code and compression will depend of which state we are in.
+ (details in tutorials)
+\end_layout
+
+\begin_layout Subsubsection
+Stationary-Ergodic sources (
+\begin_inset Quotes eld
+\end_inset
+
+most realistic
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(X_{1},X_{2},\ldots,X_{n}=a_{i}a_{j},\ldots,a_{k})$
+\end_inset
+
+ know for every 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $M^{N}$
+\end_inset
+
+ must be specified (
+\begin_inset Formula $M$
+\end_inset
+
+ size of the alphabet)
+\end_layout
+
+\begin_layout Paragraph
+Average Entropy (entropy rate):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mbox{avg}H(X)=lim_{N\rightarrow\infty}\frac{1}{N}\sum_{\mbox{all vector}}P\left(X_{1},\ldots,X_{N}=a_{i,\ldots,a_{k}}\right)\log_{2}\left(\frac{1}{P\left(X_{1},\ldots,X_{N}=a_{i,\ldots,a_{k}}\right)}\right)
+\]
+
 \end_inset
 
 
-\begin_inset Formula $=ai|X_{n}=a0)$
-\end_inset
-
-=Pi
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $P(X_{n+1}=0|X_{n}=0)=0.999$
+Main result: 
+\begin_inset Formula $\mbox{avg}H(X)\leq E(L)<\mbox{avg}H(X)+\epsilon$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Depiction of Markov Sources:
-\end_layout
-
-\begin_layout Standard
-Stationary-ergonic sources: P(x1=ai)=Pi (markov sources are special cases
- of this)
-\end_layout
-
-\begin_layout Standard
-P(X1X2...XN = a1a1a2...a1)=0.03 Probabilities of N lenght vectors, for all N.
-\end_layout
-
-\begin_layout Standard
-Average entropu is the limit on compression
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $lim_{n-\infty}$
+\begin_inset Formula $X_{1},X_{2},\ldots,X_{n}$
 \end_inset
 
-1/N *H(X1X2X3...XN) = ....
+ is not a a mixture of serval different sources chosen at the beginning.
+\end_layout
+
+\begin_layout Standard
+Evaluate avg
+\begin_inset Formula $H(X)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+We've already have the result
+\end_layout
+
+\begin_layout Itemize
+we have 
+\begin_inset Formula $P\left(X_{1},\ldots,X_{N}\right)\,\forall N$
+\end_inset
+
+ and worn out the average with a computer
+\end_layout
+
+\begin_layout Itemize
+Observe the source (empirical probailities).
+ But hard to evaluate time-wise
+\end_layout
+
+\begin_layout Standard
+How to get 
+\begin_inset Formula $E(L)\approx\mbox{avg}H(X\text{)}$
+\end_inset
+
+? 
+\emph on
+universal compression
+\end_layout
+
+\begin_layout Subsection
+Universal compression code algorithm.
+\end_layout
+
+\begin_layout Paragraph
+Definition:
+\end_layout
+
+\begin_layout Standard
+We do 
+\emph on
+not
+\emph default
+ have to know 
+\begin_inset Formula $\mbox{avg}H(X\text{)}$
+\end_inset
+
+ nor 
+\begin_inset Formula $P\left(X_{1},\ldots,X_{N}\right)$
+\end_inset
+
+ nor Source alphabet and it still compress 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ to 
+\begin_inset Formula $\mbox{avg}H(X\text{)}$
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Huffman Code is 
+\size normal
+\emph on
+not
+\emph default
+ universal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lempel-Ziv algorithm (77&78) satisfied it.
+ 
+\end_layout
+
+\begin_layout Itemize
+Why it work ? use law of large number
+\end_layout
+
+\begin_layout Itemize
+How it work ? her's an example
+\end_layout
+
+\begin_layout Paragraph
+Exemple: dictionary based approach
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="1">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AN
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANY
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ZAP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+a table of all english word.
+\end_layout
+
+\begin_layout Standard
+file: 
+\begin_inset Quotes eld
+\end_inset
+
+this is a table
+\begin_inset Quotes erd
+\end_inset
+
+ each word is in the dictionary, Compressed file pointers to each word in
+ the dictionary.
+ decompress by looking what word is pointed in the dictionnary.
+\end_layout
+
+\begin_layout Itemize
+Pro: I can compress and uniquely decompress
+\end_layout
+
+\begin_layout Itemize
+Cons: Not efficient for shorter message as the dictionary must be stored
+ from transmitter to receiver or transmit dictionary update to receiver
+\end_layout
+
+\begin_layout Itemize
+Cons: not universal
+\end_layout
+
+\begin_layout Standard
+Make the dictionary as you go along (
+\begin_inset Quotes eld
+\end_inset
+
+on the fly
+\begin_inset Quotes erd
+\end_inset
+
+), slifding window dictionnary
+\end_layout
+
+\begin_layout Paragraph
+Ex:
+\end_layout
+
+\begin_layout Standard
+Sources A,B,C, odds unknown.
+\end_layout
+
+\begin_layout Standard
+File: AAABBACBBBABABAAAACBBB, size-12 window.
+\end_layout
+
+\begin_layout Standard
+initial uncompressed file: AAABBACBBBAB, then find longest match in next
+ windows with this initial text, so we get:
+\end_layout
+
+\begin_layout Enumerate
+AAABBACBBBAB[pos 2, length 2]
+\end_layout
+
+\begin_layout Enumerate
+AAABBACBBBAB[pos 3, length 2][pos 1, length 3]
+\end_layout
+
+\begin_layout Enumerate
+AAABBACBBBAB[pos 3, length 2][pos 1, length 3][pos 6, length 6]
+\end_layout
+
+\begin_layout Standard
+then repeat with next windows with all the previous text
 \end_layout
 
 \begin_layout Part
