@@ -2065,6 +2065,120 @@ AAABBACBBBAB[pos 3, length 2][pos 1, length 3][pos 6, length 6]
 then repeat with next windows with all the previous text
 \end_layout
 
+\begin_layout Standard
+LEMPEL-ZIV COMPRESSION
+\end_layout
+
+\begin_layout Standard
+->Universal : does not need to know source 
+\end_layout
+
+\begin_layout Standard
+->Assymptoticaly achieves compression near H(x)
+\end_layout
+
+\begin_layout Standard
+-> weakness : not very good for short files
+\end_layout
+
+\begin_layout Standard
+Key idea behind the compression
+\end_layout
+
+\begin_layout Standard
+Dictionary : from original source symbol then use marhing (pointer length)
+ to represent new phrases
+\end_layout
+
+\begin_layout Standard
+A) fix dictionary at start of the file, send/Store it uncompressed
+\end_layout
+
+\begin_layout Standard
+1) the bigger w, the better compression
+\end_layout
+
+\begin_layout Standard
+2) Dealing with initial dictionary : compress it with HUFFMAN or the ineficiency
+ 
+\end_layout
+
+\begin_layout Standard
+3) Bad if source changes with time
+\end_layout
+
+\begin_layout Standard
+B) In zip compression, use scidiny window dictionary last w symbol compressed
+\end_layout
+
+\begin_layout Standard
+C) Growing window algorithm: dictionary keep all symbol seen so far in a
+ dictionary 
+\end_layout
+
+\begin_layout Standard
+good for small files, and for huge files.
+ Potential weakness: practical weakness: encoder hardware has a lot of memory
+ & can do large window/Dictionary
+\end_layout
+
+\begin_layout Standard
+D) Block-by-block lemper ziv algorithm: useful for proving near entropy
+ compression.
+ not the best performoing version, but easy to prove things.
+ w=
+\begin_inset Formula $n*2^{nH(x)+n\varepsilon}$
+\end_inset
+
+ 
+\begin_inset Formula $\varepsilon>O$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Match blocks of length n to the dictionary words of length n & keep or slide
+ window after.
+ 
+\end_layout
+
+\begin_layout Standard
+Ex:AA|AB|AA
+\end_layout
+
+\begin_layout Standard
+AA|BA|AB|AA
+\end_layout
+
+\begin_layout Standard
+p=1 p=0 p=2 p=1
+\end_layout
+
+\begin_layout Standard
+Decompress: intial window: 
+\end_layout
+
+\begin_layout Standard
+AA|AB|AA with transmition 1021
+\end_layout
+
+\begin_layout Standard
+so AA | transmission parralel of BA | AB | AA
+\end_layout
+
+\begin_layout Standard
+n=2, w=
+\begin_inset Formula $2^{nH(x)+n\varepsilon}$
+\end_inset
+
+=6 n= word size I match
+\end_layout
+
+\begin_layout Standard
+I need a scheme to represent unbonded integers efficiently (by a code: tutorial)
+\end_layout
+
 \begin_layout Part
 Tutorial
 \end_layout
