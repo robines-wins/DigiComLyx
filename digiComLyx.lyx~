@@ -2175,6 +2175,143 @@ n=2, w=
 =6 n= word size I match
 \end_layout
 
+\begin_layout Standard
+I need a scheme to represent unbonded integers efficiently (by a code: tutorial)
+\end_layout
+
+\begin_layout Standard
+In matlab
+\end_layout
+
+\begin_layout Standard
+1)S=rand(1,N)<
+\begin_inset Formula $P_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2)sum(s) -> # of 1's in S
+\end_layout
+
+\begin_layout Standard
+3) hist : help hist
+\end_layout
+
+\begin_layout Standard
+Typical Sequences <=> average sequences
+\end_layout
+
+\begin_layout Standard
+Binary memoryless source: p0 = 0.2, p1 = 0.8
+\end_layout
+
+\begin_layout Standard
+N=5 length of sequences 
+\end_layout
+
+\begin_layout Standard
+Sequences:
+\end_layout
+
+\begin_layout Standard
+00000 not typical
+\end_layout
+
+\begin_layout Standard
+00001not typical 
+\end_layout
+
+\begin_layout Standard
+01111 typical 
+\end_layout
+
+\begin_layout Standard
+11101 typical 
+\end_layout
+
+\begin_layout Standard
+1) how many typical sequences of length N are there? 
+\end_layout
+
+\begin_layout Standard
+there are 
+\begin_inset Formula $2^{NH(x)+N\epsilon}$
+\end_inset
+
+typical sequences of length N
+\end_layout
+
+\begin_layout Standard
+2) Probability of X1,X2...Xn being pick when generated
+\end_layout
+
+\begin_layout Standard
+3) Probability X1,X2,..Xn= specific typical sequences
+\end_layout
+
+\begin_layout Standard
+00010
+\end_layout
+
+\begin_layout Standard
+(a
+\begin_inset Formula $^{b})^{c}=a^{bc}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A specific typical sequence has probability 
+\begin_inset Formula $2^{-nH(x)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Probability that randomly observed X1,X2,...Xn is typical is (1-
+\begin_inset Formula $\varepsilon_{N})$
+\end_inset
+
+goes to I as N->
+\begin_inset Formula $\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+law of large number..
+ X1+X2+..+Xn/N -> E(X1) = 0.8 (p1=0.8, P0=0.2)
+\end_layout
+
+\begin_layout Standard
+P(typicalSet)=1
+\end_layout
+
+\begin_layout Standard
+So there are about 
+\begin_inset Formula $2^{nH(x)}$
+\end_inset
+
+typical sequences
+\end_layout
+
+\begin_layout Standard
+Connexion to Lenzel - zip 
+\end_layout
+
+\begin_layout Standard
+algorithm compressing to average entropy asympotically for large N
+\end_layout
+
+\begin_layout Standard
+Most of the time LZ algorithm is compressing a typical sequeence Xw, Xw+1,...,Xw+N
+\end_layout
+
 \begin_layout Part
 Tutorial
 \end_layout
