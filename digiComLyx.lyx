@@ -246,11 +246,11 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Part
-Data compression and Quantization
+Course
 \end_layout
 
 \begin_layout Chapter
-Lossless data compression
+Lossless Data compression and Quantization
 \end_layout
 
 \begin_layout Paragraph
@@ -590,7 +590,7 @@ since it'a an average of non negative quantities :
 \end_layout
 
 \begin_layout Section
-Compression algorithm in practice
+Compression algorithm theory
 \end_layout
 
 \begin_layout Paragraph
@@ -1354,7 +1354,7 @@ __________________________________________________________
 \end_layout
 
 \begin_layout Section
-Data Compression
+Data Compression in practice
 \end_layout
 
 \begin_layout Standard
@@ -2168,15 +2168,360 @@ so AA | transmission parralel of BA | AB | AA
 \end_layout
 
 \begin_layout Standard
-n=2, w=
-\begin_inset Formula $2^{nH(x)+n\varepsilon}$
+\begin_inset Formula $n=2,w=2^{nH(x)+n\varepsilon}=6n$
 \end_inset
 
-=6 n= word size I match
+= word size I match
 \end_layout
 
 \begin_layout Standard
-I need a scheme to represent unbonded integers efficiently (by a code: tutorial)
+I need a scheme to represent unbounded integers efficiently (by a code:
+ tutorial)
+\end_layout
+
+\begin_layout Chapter
+Annalog Modulation/Demodulation/channels
+\end_layout
+
+\begin_layout Paragraph
+Motivation:
+\end_layout
+
+\begin_layout Itemize
+Part of telecom History (Phone TV, Radio, Vinyl)
+\end_layout
+
+\begin_layout Itemize
+Still in use in AM/FM radio: 
+\end_layout
+
+\begin_layout Itemize
+! the future is digital cannot compress analog waveform, cannot correct
+ error, more efficency of bandwith in digital
+\end_layout
+
+\begin_layout Itemize
+But all (even Digicom) channel are annalog 
+\end_layout
+
+\begin_layout Standard
+One benefit of analog radio communication= Simple equation, Simple hardware
+\end_layout
+
+\begin_layout Paragraph
+Plan:
+\end_layout
+
+\begin_layout Itemize
+analog modulation techniques
+\end_layout
+
+\begin_layout Itemize
+bandwith usage by each techniques
+\end_layout
+
+\begin_layout Itemize
+analog signal demodulation
+\end_layout
+
+\begin_layout Itemize
+Impact of noise on annalog reception
+\end_layout
+
+\begin_layout Paragraph
+General
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+rf\left(t\right)=A\cos\left(2\pi ft+\phi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+the informatino of signal is into
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f$
+\end_inset
+
+ frequency -> Amplitude modulation
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A$
+\end_inset
+
+ amplitue -> Frenquencie modulation
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi$
+\end_inset
+
+ phase -> phase modulation
+\end_layout
+
+\begin_layout Section
+Amplitude Modulation(s)
+\end_layout
+
+\begin_layout Subsection
+DSB-AM SC : Double size band AM with suppressed carrier
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf(t)=A*m(t)*\cos\left(2\pi f_{i}+\phi\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m(t)$
+\end_inset
+
+ the information message signal (
+\begin_inset Formula $A$
+\end_inset
+
+ is a gain) and 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ is the fixed carrier frequency.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m(t)$
+\end_inset
+
+ Is an envelop of our oscillating signal signal, almost contain 
+\begin_inset Formula $m(t)$
+\end_inset
+
+ execpet for 
+\emph on
+cross-over
+\end_layout
+
+\begin_layout Subsection
+DSB-AM with carrirer
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf(t)=A*\left(K+m(t)\right)*\cos\left(2\pi f_{i}+\phi\right)$
+\end_inset
+
+, 
+\begin_inset Formula $K$
+\end_inset
+
+ fixed such that 
+\begin_inset Formula $K+m(t)>0\,\forall t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf(t)=Am(t)\cos\left(2\pi f_{i}+\phi\right)+\underset{\mbox{Carrier}}{\underbrace{AK\cos\left(2\pi f_{i}+\phi\right)}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(m(t)+K\right)A$
+\end_inset
+
+ is the envelop.
+\end_layout
+
+\begin_layout Standard
+This is what we use in practice
+\end_layout
+
+\begin_layout Subsection
+SSB-AM: Single side band AM
+\end_layout
+
+\begin_layout Standard
+Twice better efficiency used by AT&T/Bell for phone call multiplexing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf_{SSB-AM}(t)=Am(t)\cos(2\pi f_{i}t)\pm A\hat{m}(t)\sin(2\pi f_{i}t)$
+\end_inset
+
+ with 
+\begin_inset Formula $\hat{m}(t)$
+\end_inset
+
+ the Hilbert transform of message signal 
+\begin_inset Formula $m(t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(
+\begin_inset Quotes eld
+\end_inset
+
+Little bit of magic here
+\begin_inset Quotes erd
+\end_inset
+
+) but not very clear in time domain
+\end_layout
+
+\begin_layout Subsection
+Quadrature AM (can seed 2 signal on the same band)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf_{Q-AM}(t)=Am_{1}(t)\cos(2\pi f_{i}t)+Am_{2}(t)\sin(2\pi f_{i}t)$
+\end_inset
+
+ with 
+\begin_inset Formula $m_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+ two different signal
+\end_layout
+
+\begin_layout Section
+Fourier Transform & properties of AM signal
+\end_layout
+
+\begin_layout Subsection
+Fourier transform and its basic properties
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m(t)\leftrightarrow M(f)=\int_{-\infty}^{+\infty}m(t)e^{-j2\pi ft}dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Symmetry: if 
+\begin_inset Formula $m(t)$
+\end_inset
+
+ is real then 
+\begin_inset Formula $M(f)=M^{*}(-f)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Linearity: 
+\begin_inset Formula $\alpha m_{1}(t)+\beta m_{2}(t)\leftrightarrow\alpha M_{1}(f)+\beta M_{2}(f)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Time-shift: 
+\begin_inset Formula $m(t-\Delta)\leftrightarrow M(f)e^{-j2\pi f\Delta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Modulation property 
+\begin_inset Formula $m(t)e^{j2\pi f_{i}t}\leftrightarrow M(f-f_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Look at DSB-SC signal with FT
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf(t)=Am(t)\cos(2\pi f_{c}t)=Am(t)\frac{e^{j2\pi f_{c}t}}{2}+Am(t)\frac{e^{-j2\pi f_{c}t}}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+so FT will be 
+\begin_inset Formula $\frac{A}{2}M\left(F+f_{c}\right)+\frac{A}{2}M\left(F-f_{c}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+usefulness: 
+\end_layout
+
+\begin_layout Itemize
+I know exact spectrum of DSB-AM SC signal
+\end_layout
+
+\begin_layout Itemize
+I can control it
+\end_layout
+
+\begin_layout Itemize
+Frequency division multiplexing FDM
+\end_layout
+
+\begin_layout Subsection
+Look at DSB-AM with carrirer signal with FT
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf(t)=A*\left(K+m(t)\right)*\cos\left(2\pi f_{c}+\phi\right)=Am(t)\cos\left(2\pi f_{c}+\phi\right)+AK\cos\left(2\pi f_{c}+\phi\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+So FT will be 
+\begin_inset Formula $\frac{A}{2}M\left(F+f_{c}\right)+\frac{A}{2}M\left(F-f_{c}\right)+\frac{AK}{2}\delta\left(f-f_{c}\right)+\frac{AK}{2}\delta\left(f+f_{c}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Note: 
+\end_layout
+
+\begin_layout Standard
+DSB-AM-SC and DSB-AM use 
+\begin_inset Formula $2w$
+\end_inset
+
+ hertz bandwith (double bandwith use)
 \end_layout
 
 \begin_layout Part
