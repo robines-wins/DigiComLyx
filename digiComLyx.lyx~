@@ -2312,6 +2312,26 @@ algorithm compressing to average entropy asympotically for large N
 Most of the time LZ algorithm is compressing a typical sequeence Xw, Xw+1,...,Xw+N
 \end_layout
 
+\begin_layout Standard
+iii- efficiency = pointers 
+\begin_inset Formula $2^{nH(x)+n\varepsilon}.$
+\end_inset
+
+ I need nH(x)+n
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+bits
+\end_layout
+
+\begin_layout Standard
+For typicals sequences I use nH(x)+n
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ bits per n symbols from source
+\end_layout
+
 \begin_layout Part
 Tutorial
 \end_layout
@@ -2416,6 +2436,10 @@ Conversion from H(x)
 \end_inset
 
  : ln(2)/ln(3)*Hbin(x) = Hter(x) (just make the inequalities equals)
+\end_layout
+
+\begin_layout Standard
+From tutorial: ln(x)> 1-1/X
 \end_layout
 
 \end_body
