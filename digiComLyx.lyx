@@ -2179,6 +2179,135 @@ I need a scheme to represent unbounded integers efficiently (by a code:
  tutorial)
 \end_layout
 
+\begin_layout Standard
+Binary memoryless source: p0 = 0.2, p1 = 0.8
+\end_layout
+
+\begin_layout Standard
+N=5 length of sequences 
+\end_layout
+
+\begin_layout Standard
+Sequences:
+\end_layout
+
+\begin_layout Standard
+00000 not typical
+\end_layout
+
+\begin_layout Standard
+00001not typical 
+\end_layout
+
+\begin_layout Standard
+01111 typical 
+\end_layout
+
+\begin_layout Standard
+11101 typical 
+\end_layout
+
+\begin_layout Standard
+1) how many typical sequences of length N are there? 
+\end_layout
+
+\begin_layout Standard
+there are 
+\begin_inset Formula $2^{NH(x)+N\epsilon}$
+\end_inset
+
+typical sequences of length N
+\end_layout
+
+\begin_layout Standard
+2) Probability of X1,X2...Xn being pick when generated
+\end_layout
+
+\begin_layout Standard
+3) Probability X1,X2,..Xn= specific typical sequences
+\end_layout
+
+\begin_layout Standard
+00010
+\end_layout
+
+\begin_layout Standard
+(a
+\begin_inset Formula $^{b})^{c}=a^{bc}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A specific typical sequence has probability 
+\begin_inset Formula $2^{-nH(x)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Probability that randomly observed X1,X2,...Xn is typical is (1-
+\begin_inset Formula $\varepsilon_{N})$
+\end_inset
+
+goes to I as N->
+\begin_inset Formula $\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+law of large number..
+ X1+X2+..+Xn/N -> E(X1) = 0.8 (p1=0.8, P0=0.2)
+\end_layout
+
+\begin_layout Standard
+P(typicalSet)=1
+\end_layout
+
+\begin_layout Standard
+So there are about 
+\begin_inset Formula $2^{nH(x)}$
+\end_inset
+
+typical sequences
+\end_layout
+
+\begin_layout Standard
+Connexion to Lenzel - zip 
+\end_layout
+
+\begin_layout Standard
+algorithm compressing to average entropy asympotically for large N
+\end_layout
+
+\begin_layout Standard
+Most of the time LZ algorithm is compressing a typical sequeence Xw, Xw+1,...,Xw+N
+\end_layout
+
+\begin_layout Standard
+iii- efficiency = pointers 
+\begin_inset Formula $2^{nH(x)+n\varepsilon}.$
+\end_inset
+
+ I need nH(x)+n
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+bits
+\end_layout
+
+\begin_layout Standard
+For typicals sequences I use nH(x)+n
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ bits per n symbols from source
+\end_layout
+
 \begin_layout Chapter
 Annalog Modulation/Demodulation/channels
 \end_layout
@@ -2549,132 +2678,191 @@ Typical Sequences <=> average sequences
 \end_layout
 
 \begin_layout Standard
-Binary memoryless source: p0 = 0.2, p1 = 0.8
+19/02
 \end_layout
 
 \begin_layout Standard
-N=5 length of sequences 
+4 flavors of AM (Amplitude modulation)
 \end_layout
 
 \begin_layout Standard
-Sequences:
+1) PSB-SC Am(t)cos(2*pi*fct)
 \end_layout
 
 \begin_layout Standard
-00000 not typical
+2) DSB A% A(K+m(t))cos(2*pi(fct))
 \end_layout
 
 \begin_layout Standard
-00001not typical 
+3) SSB AM 
 \end_layout
 
 \begin_layout Standard
-01111 typical 
+eliminate 50% pf the AM spectrum signal 
 \end_layout
 
 \begin_layout Standard
-11101 typical 
+SSB uses only W hert bandwith
 \end_layout
 
 \begin_layout Standard
-1) how many typical sequences of length N are there? 
+Twos flavors : USSB AM - upperside band AM
 \end_layout
 
 \begin_layout Standard
-there are 
-\begin_inset Formula $2^{NH(x)+N\epsilon}$
+LSSB AM - lower bands
+\end_layout
+
+\begin_layout Standard
+Analog sharp filter are expensive and hard to build
+\end_layout
+
+\begin_layout Standard
+4)Q-AM
+\end_layout
+
+\begin_layout Standard
+(2.1 AM MODULATOR & BANDWITH)
+\end_layout
+
+\begin_layout Standard
+2.2 AM DE-MODULATORà
+\end_layout
+
+\begin_layout Standard
+1) Case study 
+\end_layout
+
+\begin_layout Standard
+cos(
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2
+\backslash
+pi fct) 
+\begin_inset Formula $ $
 \end_inset
 
-typical sequences of length N
+
 \end_layout
 
 \begin_layout Standard
-2) Probability of X1,X2...Xn being pick when generated
+Am(t)cos(
+\begin_inset Formula $2\pi fct)$
+\end_inset
+
+ -> X -> A*m(t)*cos^2(
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2
+\backslash
+pi fct) = [1/2+ cos (2
+\backslash
+pi fct*t)
 \end_layout
 
 \begin_layout Standard
-3) Probability X1,X2,..Xn= specific typical sequences
+/2] * m(t)A objective: bring the signal back to M(f)
 \end_layout
 
 \begin_layout Standard
-00010
+But : issue of synchronization between cos(
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2
+\backslash
+pi fct) at transisiter & cos(2
+\backslash
+pi fct) at receiver
 \end_layout
 
 \begin_layout Standard
-(a
-\begin_inset Formula $^{b})^{c}=a^{bc}$
+danger: can be a sin
+\end_layout
+
+\begin_layout Standard
+2) DSB AM with Cancler is simple & robust to demodulate
+\end_layout
+
+\begin_layout Standard
+A*m(t)cos
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(2
+\backslash
+pi fct) + K A cos(2
+\backslash
+pi fct)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A*m(t)*cos^{2}(2*\pi*fct)$
+\end_inset
+
+
+\begin_inset Formula $+KAcos^{2}(2\pi fct)$
+\end_inset
+
+
+\begin_inset Formula $=A/2m(t)+A/2m(t)cos(2\pi2fct)+KAcos(2\pi$
+\end_inset
+
+
+\begin_inset Formula $2fct)$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-A specific typical sequence has probability 
-\begin_inset Formula $2^{-nH(x)}$
+2) DSB-AM Alternative receiver
+\end_layout
+
+\begin_layout Standard
+Envelope Detector - without going into frequency domain
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A*(m(t)+K)cos(2\pi fct)$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Probability that randomly observed X1,X2,...Xn is typical is (1-
-\begin_inset Formula $\varepsilon_{N})$
-\end_inset
-
-goes to I as N->
-\begin_inset Formula $\infty$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-law of large number..
- X1+X2+..+Xn/N -> E(X1) = 0.8 (p1=0.8, P0=0.2)
-\end_layout
-
-\begin_layout Standard
-P(typicalSet)=1
-\end_layout
-
-\begin_layout Standard
-So there are about 
-\begin_inset Formula $2^{nH(x)}$
-\end_inset
-
-typical sequences
-\end_layout
-
-\begin_layout Standard
-Connexion to Lenzel - zip 
-\end_layout
-
-\begin_layout Standard
-algorithm compressing to average entropy asympotically for large N
-\end_layout
-
-\begin_layout Standard
-Most of the time LZ algorithm is compressing a typical sequeence Xw, Xw+1,...,Xw+N
-\end_layout
-
-\begin_layout Standard
-iii- efficiency = pointers 
-\begin_inset Formula $2^{nH(x)+n\varepsilon}.$
-\end_inset
-
- I need nH(x)+n
-\begin_inset Formula $\varepsilon$
-\end_inset
-
-bits
-\end_layout
-
-\begin_layout Standard
-For typicals sequences I use nH(x)+n
-\begin_inset Formula $\epsilon$
-\end_inset
-
- bits per n symbols from source
 \end_layout
 
 \begin_layout Part
