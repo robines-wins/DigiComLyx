@@ -1,0 +1,2462 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage[pdftex,bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2]{hyperref}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+ECSE 411/511
+\begin_inset Newline newline
+\end_inset
+
+Intro to DigiCom
+\end_layout
+
+\begin_layout Author
+Marie-Jeanne Lagarde
+\begin_inset Newline newline
+\end_inset
+
+Robin Solignac
+\end_layout
+
+\begin_layout Section*
+Course grading system
+\end_layout
+
+\begin_layout Itemize
+4 assignment 15%
+\end_layout
+
+\begin_layout Itemize
+Midterm, after SPRING BREAK (march 10), open note 35%
+\end_layout
+
+\begin_layout Itemize
+final 50%
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+411: final exam 2hrs 
+\end_layout
+
+\begin_layout Itemize
+511: final exam+implementation problem 
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Courses overview
+\end_layout
+
+\begin_layout Enumerate
+Data Compression and A/D quantization
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+models of data sources with inherent redundancy and fundamental limit on
+ quantization and compression
+\end_layout
+
+\begin_layout Itemize
+quantizers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Maximum entropy quantizer, 
+\end_layout
+
+\begin_layout Itemize
+Max loyd quantizer, 
+\end_layout
+
+\begin_layout Itemize
+Vector quantization
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+compression
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Huffman codes (JPEG)
+\end_layout
+
+\begin_layout Itemize
+Ledpetziv (?) algorithm (zip)
+\end_layout
+
+\begin_layout Itemize
+run length code
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+practical
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Analog modulation and channels with noise
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+AM/FM radio: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Modulation techniques, bandwidth usage, 
+\end_layout
+
+\begin_layout Itemize
+demodulation techniques and their performance
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+radio frequency channel for digicom
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Digital modulation and demodulation techniques
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+general modulation and demodulation techniques 
+\end_layout
+
+\begin_layout Itemize
+D-QPSK, Manchester Modulation code,...
+\end_layout
+
+\begin_layout Itemize
+OFDM: Wi-Fi, 4G
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Theory behind fundamental limits
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+entropy
+\end_layout
+
+\begin_layout Itemize
+capacity of channel: limit on reliable transmission
+\end_layout
+
+\begin_layout Itemize
+quantization: ray distortion result
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Data compression and Quantization
+\end_layout
+
+\begin_layout Chapter
+Lossless data compression
+\end_layout
+
+\begin_layout Paragraph
+Objectives:
+\end_layout
+
+\begin_layout Enumerate
+Original file = decompressed File
+\end_layout
+
+\begin_layout Enumerate
+Efficiency, 3:1, 2:1 compression ratio
+\end_layout
+
+\begin_layout Paragraph
+Questions:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q1: What is the limit on compression efficiency 
+\emph on
+on average ? 
+\emph default
+(answers:
+\emph on
+ Entropy
+\emph default
+ of data source is the limit)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q2: How to do compression/decompression in practice
+\end_layout
+
+\begin_layout Subsection
+Model of data source
+\end_layout
+
+\begin_layout Standard
+Random sequence of symbols is emitted by data source.
+\end_layout
+
+\begin_layout Paragraph
+Source alphabet:
+\end_layout
+
+\begin_layout Standard
+Emitted symbols are member, and constitute the 
+\emph on
+source alphabet
+\end_layout
+
+\begin_layout Paragraph
+Source probabilities:
+\end_layout
+
+\begin_layout Standard
+probabilities of showing of each symbols.
+\end_layout
+
+\begin_layout Itemize
+Memoryless source: symbols are independently generated
+\end_layout
+
+\begin_layout Itemize
+Source with memory: better model.
+ ex: Markov source
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Markov model are use in speech compression 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+History
+\end_layout
+
+\begin_layout Paragraph
+Morse code:
+\end_layout
+
+\begin_layout Standard
+At the beginning: morse code.
+ The telegraph (1840's) trough cable over sea floor.
+ Use translation of english alphabet to binary (ternary) symbols.
+ and they want the frequency character should be short in binary (i.e E =
+ .
+ ).
+ So they use probabilities: empirically calculated from frequencies in books
+\end_layout
+
+\begin_layout Paragraph
+earlier compression: (1600)
+\end_layout
+
+\begin_layout Standard
+Used shutter for transmission with UK of royal command.
+ pattern on 4x4 windows (preset message) message send optically and retransmit
+ via relay station.
+ so 16 bits for each message, but message of different length, The longest:
+ 
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Quotes eld
+\end_inset
+
+by the order of the her/this majesty king/queen the prisoner is to be executed
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+kind of compression:
+\end_layout
+
+\begin_layout Itemize
+Fixed to variable
+\end_layout
+
+\begin_layout Itemize
+variable to fixed (1980's)
+\end_layout
+
+\begin_layout Itemize
+variable to variable (zip files)
+\end_layout
+
+\begin_layout Itemize
+fixed to fixed (2000), turbo compression
+\end_layout
+
+\begin_layout Paragraph
+Information Entropy:
+\end_layout
+
+\begin_layout Standard
+How much can I compress the most ? 
+\end_layout
+
+\begin_layout Standard
+answer: in 1948 Shannon found (in AT&T/Bell labs) the limit to be the 
+\emph on
+entropy 
+\emph default
+of the source.
+ Cannot compress to fewer bit bits per symbol than entropy
+\end_layout
+
+\begin_layout Section
+Entropy limit on compression
+\end_layout
+
+\begin_layout Itemize
+how to calculate it and use it ?
+\end_layout
+
+\begin_layout Itemize
+why is it true?
+\end_layout
+
+\begin_layout Subsection
+Definition:
+\end_layout
+
+\begin_layout Standard
+For a discrete memoryless source 
+\begin_inset Formula $X$
+\end_inset
+
+ with an alphabet 
+\begin_inset Formula $A=\left\{ a_{1},\ldots,a_{n}\right\} $
+\end_inset
+
+ and source probabilities 
+\begin_inset Formula $p_{1}=P(a_{1}),\ldots p_{n}=P(a_{n})$
+\end_inset
+
+, the entropy of the source is 
+\begin_inset Formula 
+\[
+H(X)=\sum_{i=1}^{n}p_{i}\log_{2}\left(\frac{1}{p_{i}}\right)=E_{p_{x}}\left(\log_{2}\frac{1}{p_{x}}\right)
+\]
+
+\end_inset
+
+in bits/symbols.
+\end_layout
+
+\begin_layout Paragraph
+comment:
+\end_layout
+
+\begin_layout Enumerate
+easy to evaluate
+\end_layout
+
+\begin_layout Enumerate
+units: Bits (
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+), bytes (
+\begin_inset Formula $\log_{8}$
+\end_inset
+
+) or natural units (
+\begin_inset Formula $\ln$
+\end_inset
+
+), ...
+\end_layout
+
+\begin_layout Enumerate
+connected to compression 
+\end_layout
+
+\begin_layout Subsection
+Lossless compression theorem
+\end_layout
+
+\begin_layout Standard
+For discrete memoryless source 
+\begin_inset Formula $X$
+\end_inset
+
+ with entropy 
+\begin_inset Formula $H(x)$
+\end_inset
+
+, you cannot compress to less than 
+\begin_inset Formula $H(x)$
+\end_inset
+
+ bits.
+ And this level can be achieved.
+\end_layout
+
+\begin_layout Paragraph
+comments:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H(x)$
+\end_inset
+
+ is important, how big/small can it be ? (Maximum when all symbols have
+ the same probability)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+we define 
+\begin_inset Formula $0\log0=0$
+\end_inset
+
+ Bits/Symbols
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Why is it the limit ?
+\end_layout
+
+\begin_layout Paragraph
+properties of 
+\begin_inset Formula $H(X)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $0\leq H(X)\leq\log_{2}M$
+\end_inset
+
+.
+ With 
+\begin_inset Formula $M$
+\end_inset
+
+ the number of symbol
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H(X)=p_{1}\log_{2}\frac{1}{p_{1}},\ldots,p_{n}\log_{2}\frac{1}{p_{n}}=f\left(p_{1},\ldots,p_{n}\right)$
+\end_inset
+
+ is a concave function 
+\end_layout
+
+\begin_layout Subparagraph
+proof of 
+\begin_inset Formula $H(X)\geq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+since it'a an average of non negative quantities :
+\begin_inset Formula $0\leq p_{i}\leq1$
+\end_inset
+
+ so 
+\begin_inset Formula $\log_{2}\frac{1}{p_{i}}\geq0$
+\end_inset
+
+ and so 
+\begin_inset Formula $p_{i}\log_{2}\frac{1}{p_{i}}\geq0$
+\end_inset
+
+ then it will be positive.
+ it's equals 
+\begin_inset Formula $0$
+\end_inset
+
+ only when 
+\begin_inset Formula $\exists n\,:\,p_{n}=1\wedge p_{n}=0\forall m\neq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Compression algorithm in practice
+\end_layout
+
+\begin_layout Paragraph
+Motivation
+\end_layout
+
+\begin_layout Standard
+Start with fixed to variable length compression (like Morse-code)
+\end_layout
+
+\begin_layout Standard
+compression table:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Source symbols 
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P(X=i)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+compressed binary string
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $000$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.29$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ex : CCCBCCABCCBCC will give 111011100001110111
+\end_layout
+
+\begin_layout Standard
+So 
+\begin_inset Formula $18$
+\end_inset
+
+ bits per 
+\begin_inset Formula $13$
+\end_inset
+
+ source symbol are used: 
+\begin_inset Formula $1.38$
+\end_inset
+
+ Bits/symbols.
+ with fixed to fixed (ascii like symbols representation) we will have 
+\begin_inset Formula $2$
+\end_inset
+
+ bits/symbols.
+\end_layout
+
+\begin_layout Standard
+let's compare to 
+\begin_inset Formula $H(X)$
+\end_inset
+
+.
+ 
+\begin_inset Formula $H(X)=0.94$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lower limit on compression is 
+\begin_inset Formula $H(X)$
+\end_inset
+
+ - Entropy of the source
+\end_layout
+
+\begin_layout Standard
+Specific codes: Fixed to variable length
+\end_layout
+
+\begin_layout Subsection
+Uniquely decodable and Prefix Code:
+\end_layout
+
+\begin_layout Description
+Uniquely-decodable: Ability to decompress without use of commas
+\end_layout
+
+\begin_layout Description
+Prefix-codes: No binary codeword is a prefix of another codeword
+\end_layout
+
+\begin_layout Standard
+Prefix codes are 
+\emph on
+always
+\emph default
+ uniquely decodable (PC imply UD)
+\end_layout
+
+\begin_layout Standard
+UD <=> Every compressed file can be uniquely decompressed
+\end_layout
+
+\begin_layout Standard
+moreover: can be decode instantly without buffering
+\end_layout
+
+\begin_layout Subsection
+MacMillan inequality:
+\end_layout
+
+\begin_layout Paragraph
+Pratical design condition:
+\end_layout
+
+\begin_layout Standard
+Prefixe code exemple:
+\end_layout
+
+\begin_layout Standard
+a1 - 1 
+\end_layout
+
+\begin_layout Standard
+a2 - 01
+\end_layout
+
+\begin_layout Standard
+a3 - 000
+\end_layout
+
+\begin_layout Standard
+Focus on prefix codes & make then compress to 
+\begin_inset Formula $H(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+given sources a1 a2 a3...aM with probabilities p1, p2, p3..pM can I make a prefix
+ code with lenghs l1, l2, l3 ? 
+\end_layout
+
+\begin_layout Standard
+Efficiency of this code 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ (average number of compressed bits used per store symbols).
+ 
+\begin_inset Formula $E(L)=\sum p_{i}*l_{i}$
+\end_inset
+
+( we want it as small as possible)
+\end_layout
+
+\begin_layout Standard
+Even if wanted code fulfill 
+\begin_inset Formula $E(L)\geq H(x)$
+\end_inset
+
+, sometime no matter how hard you try you will not get a prefix code or
+ UD code
+\emph on
+ 
+\end_layout
+
+\begin_layout Paragraph
+The MacMillan inequality:
+\end_layout
+
+\begin_layout Standard
+To see if a such code can be, let's see if ti satisfy the inequality: 
+\begin_inset Formula 
+\[
+2^{-l_{1}}+2^{-l_{2}}+\cdots+2^{-l_{n}}\leq1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+if it satisfy this inequality we can design a binary then prefix (UD) code
+\end_layout
+
+\begin_layout Itemize
+if it fails for 
+\begin_inset Formula $l_{1},\ldots,l_{n}$
+\end_inset
+
+ a prefix (or UD) code cannot be created/Designed
+\end_layout
+
+\begin_layout Subsection
+Huffman codes
+\end_layout
+
+\begin_layout Standard
+Now we need a method to design a good prefix code.
+\end_layout
+
+\begin_layout Standard
+Given 
+\begin_inset Formula $p_{1},\ldots,p_{n}$
+\end_inset
+
+ design a prefix code who satisfy the MacMillan inequality
+\end_layout
+
+\begin_layout Enumerate
+put symbols-nodes for each symbols at the leaf of a tree, there all free
+ they weight is 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+group the two free nodes who weight sum is the smaller, theses two node
+ are not free anymore, the new node is, with weigth equal to the sum of
+ connected node
+\end_layout
+
+\begin_layout Enumerate
+repeat 2.
+ until there's only one free node left.
+\end_layout
+
+\begin_layout Enumerate
+On each none leaf node, label one of it's leaving branch with 
+\begin_inset Formula $1$
+\end_inset
+
+ and the other with 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+code of each symbol is the sequence made by the label on the branch who
+ made the path 
+\emph on
+from 
+\emph default
+roots 
+\emph on
+to
+\emph default
+ the symbols
+\end_layout
+
+\begin_layout Standard
+the tree structure guaranties that the prefix condition will hold, So it
+ can be used to decompress data: just go along the tree from roots and at
+ each step take the labeled branch who match the current symbols, then read
+ next symbols until we reach a leaf: the decoded symbols.
+ Then start again from roots
+\end_layout
+
+\begin_layout Standard
+Next step: Answers the why's (we've done the how's), and non Binary codes
+\end_layout
+
+\begin_layout Subsubsection
+Main Result:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(X)\leq E(L)\leq H(X)+1$
+\end_inset
+
+for prefix or uniquely decodable codes (to be prove)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum_{i=1}^{M}2^{-li}\leq1$
+\end_inset
+
+ : this inequality holds <=> a prefix code can be find
+\end_layout
+
+\begin_layout Standard
+Huffman codes/ Algorithm
+\end_layout
+
+\begin_layout Standard
+Recursion
+\end_layout
+
+\begin_layout Paragraph
+Question:
+\end_layout
+
+\begin_layout Standard
+Will this code compress to 
+\begin_inset Formula $E(L)=H(X)$
+\end_inset
+
+?
+\begin_inset Newline newline
+\end_inset
+
+Answer: sometimes yes, sometimes no, but it can be fixed to do it.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Example:
+\end_layout
+
+\begin_layout Paragraph
+Ex1: Binary Huffman 
+\end_layout
+
+\begin_layout Standard
+For source : p1 = 1/2 
+\begin_inset Quotes eld
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+ p2= 1/4 
+\begin_inset Quotes eld
+\end_inset
+
+10
+\begin_inset Quotes erd
+\end_inset
+
+ p3=1/8 
+\begin_inset Quotes eld
+\end_inset
+
+110
+\begin_inset Quotes erd
+\end_inset
+
+ p4=1/8 
+\begin_inset Quotes eld
+\end_inset
+
+111
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+merge a3 and a4, (probability 1/4), then a2 and a3-a4
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E(L)=\frac{1}{2}*1+\frac{1}{4}*2+\frac{1}{8}*2*3=1.75$
+\end_inset
+
+ Bits/symbols
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(x)=1.75$
+\end_inset
+
+bits/symbols so best possible compression was achieved with Huffman code
+\end_layout
+
+\begin_layout Paragraph
+EX2: Huffman code is far from entropy
+\end_layout
+
+\begin_layout Standard
+1: Pb: 2
+\begin_inset Formula $^{-10}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+0 : PA = 1 - 2
+\begin_inset Formula $^{-10}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E(L) = 1 bits/Symbol
+\end_layout
+
+\begin_layout Standard
+H(x) = 0.011 bits/symbol
+\end_layout
+
+\begin_layout Paragraph
+Ex3: Vectorization of Huffman code
+\end_layout
+
+\begin_layout Standard
+Pairs source symbols and redo Huffman 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2^{-20}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-2^{-10})2^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-2^{-10})2^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-2^{-10})(1-2^{-10})=0.998$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum p_{i}*l_{i}\approx1$
+\end_inset
+
+ Bits for 2 pixels so 
+\begin_inset Formula $E(L)\approx0.5$
+\end_inset
+
+ Bits/pixel
+\end_layout
+
+\begin_layout Subparagraph
+Observe: 
+\end_layout
+
+\begin_layout Standard
+one can vectorize 3 pixels as new symbol or more, but complexity (table
+ will be of length 
+\begin_inset Formula $2^{\mbox{Vector length}}$
+\end_inset
+
+) can be an issue
+\end_layout
+
+\begin_layout Subsection
+Shanon-Fano code
+\end_layout
+
+\begin_layout Paragraph
+Objective
+\end_layout
+
+\begin_layout Standard
+Show that I can always take a prefix code such taht 
+\begin_inset Formula $E(X)\leq H(X)+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Given 
+\begin_inset Formula $p_{1},\ldots,p_{M}$
+\end_inset
+
+ source probability, chose 
+\begin_inset Formula $l_{i}=\left\lceil \log_{2}\frac{1}{p_{i}}\right\rceil \,\forall i$
+\end_inset
+
+.
+ Can we make a prefix code with these 
+\begin_inset Formula $l_{i}$
+\end_inset
+
+'s ? Yes and 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ of this code is the is less than 
+\begin_inset Formula $H(X)+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+proof:
+\end_layout
+
+\begin_layout Standard
+For specs 
+\begin_inset Formula $l_{i}=\left\lceil \log_{2}\frac{1}{p_{i}}\right\rceil $
+\end_inset
+
+.
+ just need to check if 
+\begin_inset Formula $\sum_{i=1}^{M}2^{-l_{i}}$
+\end_inset
+
+ if yes, it has a prefix code
+\end_layout
+
+\begin_layout Standard
+In general: 
+\begin_inset Formula $\sum_{i=1}^{M}2^{-l_{i}}=2^{-\left\lceil \log_{2}\frac{1}{p_{1}}\right\rceil }+\cdots+2^{-\left\lceil \log_{2}\frac{1}{p_{i}}\right\rceil }\leq2^{-\log_{2}\frac{1}{p_{1}}}+\cdots+2^{-\log_{2}\frac{1}{p_{M}}}=2^{\log_{2}}+\cdots+2^{\log_{2}p_{m}}=p_{1}+\cdots+p_{M}=1$
+\end_inset
+
+.
+ so a prefix code exist
+\end_layout
+
+\begin_layout Standard
+And because 
+\begin_inset Formula $\left\lceil \log_{2}x\right\rceil <\log_{2}x+1$
+\end_inset
+
+ so 
+\begin_inset Formula $E(L)<p_{1}\log_{2}\frac{1}{p_{i}}+\cdots+p_{M}\log_{2}\frac{1}{pM}+1p_{1}+\cdots+1p_{M}=H(X)+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+__________________________________________________________
+\end_layout
+
+\begin_layout Section
+Data Compression
+\end_layout
+
+\begin_layout Standard
+Plan : 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H(X)=E(L)$
+\end_inset
+
+ Bits per symbol for fixed to var code
+\end_layout
+
+\begin_layout Enumerate
+RNN-length codes for slan/fax/etc..
+ 
+\end_layout
+
+\begin_layout Enumerate
+Sources with memory and their compression
+\end_layout
+
+\begin_layout Enumerate
+Lempez-ziv (zip) algorithm
+\end_layout
+
+\begin_layout Subsection
+Fixed-to-variable length compression code (Huffman and vectorized Huffman)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(x)\leq E(L)\leq H(X)+\frac{1}{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(X)\leq E(L)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Show:
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E(L)-H(X) & = & \sum_{i=1}^{L}pi*li-\mbox{\ensuremath{\sum_{i=1}^{M1}pi*log_{2}\left(\frac{1}{p_{i}}\right)}=\ensuremath{\sum p_{i}\left(\log_{2}\left(\frac{p_{i}}{2^{-l_{i}}}\right)+log_{2}(pi)\right)}}\\
+ & = & \ensuremath{\frac{1}{\ln(2)}\sum_{i=1}^{M}p_{i}*\ln\left(\frac{p_{i}}{2^{-l_{i}}}\right)}\\
+ & = & \ln(x)\geq1-1/x\geq\frac{1}{\ln(2)}\mbox{\ensuremath{\sum p_{i}\left(1-\frac{2^{-li}}{p_{i}}\right)} }
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(we see that the result is positive) 
+\begin_inset Formula $\geq1/0.69(1-\sum2^{-li})\geq0$
+\end_inset
+
+ (to demonstrate in an assignment)
+\end_layout
+
+\begin_layout Subsection
+RVN Length codes:
+\end_layout
+
+\begin_layout Standard
+Motivation/Story -> Fax Machine: 
+\end_layout
+
+\begin_layout Standard
+Typical Sequence : 000000000000011000000111100000
+\end_layout
+
+\begin_layout Standard
+variable length source string
+\end_layout
+
+\begin_layout Standard
+8 source strings translate to a fixed code:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+000
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+010
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+011
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+00001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+000001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0000001
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+110
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0000000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+111
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(here is the money)
+\end_layout
+
+\begin_layout Standard
+Example: Scan : 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0001(a3)/1(a0)/
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0000000(a7)/0001/01
+\end_layout
+
+\begin_layout Standard
+Uniquely decodable but how efficient? 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{0}=0.99$
+\end_inset
+
+; 
+\begin_inset Formula $p1=0.01$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E(L)=p1*3+p_{0}*p_{1}*\frac{3}{2}+p_{0}*p_{0}*p_{1}*\frac{3}{3}+\cdots3/4+\cdots3/5+\cdots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lesson: it works & is better than Huffman code, and less complex than full
+ vectorization.
+ 
+\begin_inset Formula $2^{7}$
+\end_inset
+
+ vectors
+\end_layout
+
+\begin_layout Standard
+We need a7 -> 1 bits.
+ So after apply an Huffman code.
+\end_layout
+
+\begin_layout Subsection
+source with memory and their compression
+\end_layout
+
+\begin_layout Paragraph
+Motivation:
+\end_layout
+
+\begin_layout Standard
+Practical sources have memory (not iid) (english, scans, drawings)
+\end_layout
+
+\begin_layout Standard
+the memoryless results extend to sources with memory (The law of large numbers
+ still work)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H(X)\leq E(L)\leq H(X)+\varepsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Data source with memory: 
+\end_layout
+
+\begin_layout Subsubsection
+Markov Sources
+\end_layout
+
+\begin_layout Standard
+Memory one sources
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{1},X_{2},\ldots X_{N}$
+\end_inset
+
+(source string generated), Source alphabet 
+\begin_inset Formula $q1,q2,\ldots,q_{M}$
+\end_inset
+
+ then we have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(X_{n+1}=q_{i}|X_{n}=q_{j})=p_{ij}$
+\end_inset
+
+ fixed (special case of Stationary-Ergodic)
+\end_layout
+
+\begin_layout Standard
+Average entropy is the limit on compression: 
+\begin_inset Formula $lim_{n-\infty}\frac{1}{N}*H(X_{1},X_{2},X_{3},\ldots,X_{N})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+See them has a mix of serval sources depending on state, and look at the
+ 
+\emph on
+average entropy
+\emph default
+ of these sources.
+ 
+\end_layout
+
+\begin_layout Standard
+How to compress this sources optimally ?
+\end_layout
+
+\begin_layout Paragraph
+Idea:
+\end_layout
+
+\begin_layout Standard
+Make two (serval) near entropy code, one for each sources in the mixed sources.
+ Code and compression will depend of which state we are in.
+ (details in tutorials)
+\end_layout
+
+\begin_layout Subsubsection
+Stationary-Ergodic sources (
+\begin_inset Quotes eld
+\end_inset
+
+most realistic
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(X_{1},X_{2},\ldots,X_{n}=a_{i}a_{j},\ldots,a_{k})$
+\end_inset
+
+ know for every 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $M^{N}$
+\end_inset
+
+ must be specified (
+\begin_inset Formula $M$
+\end_inset
+
+ size of the alphabet)
+\end_layout
+
+\begin_layout Paragraph
+Average Entropy (entropy rate):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mbox{avg}H(X)=lim_{N\rightarrow\infty}\frac{1}{N}\sum_{\mbox{all vector}}P\left(X_{1},\ldots,X_{N}=a_{i,\ldots,a_{k}}\right)\log_{2}\left(\frac{1}{P\left(X_{1},\ldots,X_{N}=a_{i,\ldots,a_{k}}\right)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Main result: 
+\begin_inset Formula $\mbox{avg}H(X)\leq E(L)<\mbox{avg}H(X)+\epsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{1},X_{2},\ldots,X_{n}$
+\end_inset
+
+ is not a a mixture of serval different sources chosen at the beginning.
+\end_layout
+
+\begin_layout Standard
+Evaluate avg
+\begin_inset Formula $H(X)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+We've already have the result
+\end_layout
+
+\begin_layout Itemize
+we have 
+\begin_inset Formula $P\left(X_{1},\ldots,X_{N}\right)\,\forall N$
+\end_inset
+
+ and worn out the average with a computer
+\end_layout
+
+\begin_layout Itemize
+Observe the source (empirical probailities).
+ But hard to evaluate time-wise
+\end_layout
+
+\begin_layout Standard
+How to get 
+\begin_inset Formula $E(L)\approx\mbox{avg}H(X\text{)}$
+\end_inset
+
+? 
+\emph on
+universal compression
+\end_layout
+
+\begin_layout Subsection
+Universal compression code algorithm.
+\end_layout
+
+\begin_layout Paragraph
+Definition:
+\end_layout
+
+\begin_layout Standard
+We do 
+\emph on
+not
+\emph default
+ have to know 
+\begin_inset Formula $\mbox{avg}H(X\text{)}$
+\end_inset
+
+ nor 
+\begin_inset Formula $P\left(X_{1},\ldots,X_{N}\right)$
+\end_inset
+
+ nor Source alphabet and it still compress 
+\begin_inset Formula $E(L)$
+\end_inset
+
+ to 
+\begin_inset Formula $\mbox{avg}H(X\text{)}$
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Huffman Code is 
+\size normal
+\emph on
+not
+\emph default
+ universal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lempel-Ziv algorithm (77&78) satisfied it.
+ 
+\end_layout
+
+\begin_layout Itemize
+Why it work ? use law of large number
+\end_layout
+
+\begin_layout Itemize
+How it work ? her's an example
+\end_layout
+
+\begin_layout Paragraph
+Exemple: dictionary based approach
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="1">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AN
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANY
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ZAP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+a table of all english word.
+\end_layout
+
+\begin_layout Standard
+file: 
+\begin_inset Quotes eld
+\end_inset
+
+this is a table
+\begin_inset Quotes erd
+\end_inset
+
+ each word is in the dictionary, Compressed file pointers to each word in
+ the dictionary.
+ decompress by looking what word is pointed in the dictionnary.
+\end_layout
+
+\begin_layout Itemize
+Pro: I can compress and uniquely decompress
+\end_layout
+
+\begin_layout Itemize
+Cons: Not efficient for shorter message as the dictionary must be stored
+ from transmitter to receiver or transmit dictionary update to receiver
+\end_layout
+
+\begin_layout Itemize
+Cons: not universal
+\end_layout
+
+\begin_layout Standard
+Make the dictionary as you go along (
+\begin_inset Quotes eld
+\end_inset
+
+on the fly
+\begin_inset Quotes erd
+\end_inset
+
+), sliding window dictionary
+\end_layout
+
+\begin_layout Paragraph
+Ex:
+\end_layout
+
+\begin_layout Standard
+Sources A,B,C, odds unknown.
+\end_layout
+
+\begin_layout Standard
+File: AAABBACBBBABABAAAACBBB, size-12 window.
+\end_layout
+
+\begin_layout Standard
+initial uncompressed file: AAABBACBBBAB, then find longest match in next
+ windows with this initial text, so we get:
+\end_layout
+
+\begin_layout Enumerate
+AAABBACBBBAB[pos 2, length 2]
+\end_layout
+
+\begin_layout Enumerate
+AAABBACBBBAB[pos 3, length 2][pos 1, length 3]
+\end_layout
+
+\begin_layout Enumerate
+AAABBACBBBAB[pos 3, length 2][pos 1, length 3][pos 6, length 6]
+\end_layout
+
+\begin_layout Standard
+then repeat with next windows with all the previous text
+\end_layout
+
+\begin_layout Standard
+LEMPEL-ZIV COMPRESSION
+\end_layout
+
+\begin_layout Standard
+->Universal : does not need to know source 
+\end_layout
+
+\begin_layout Standard
+->Assymptoticaly achieves compression near H(x)
+\end_layout
+
+\begin_layout Standard
+-> weakness : not very good for short files
+\end_layout
+
+\begin_layout Standard
+Key idea behind the compression
+\end_layout
+
+\begin_layout Standard
+Dictionary : from original source symbol then use marhing (pointer length)
+ to represent new phrases
+\end_layout
+
+\begin_layout Standard
+A) fix dictionary at start of the file, send/Store it uncompressed
+\end_layout
+
+\begin_layout Standard
+1) the bigger w, the better compression
+\end_layout
+
+\begin_layout Standard
+2) Dealing with initial dictionary : compress it with HUFFMAN or the ineficiency
+ 
+\end_layout
+
+\begin_layout Standard
+3) Bad if source changes with time
+\end_layout
+
+\begin_layout Standard
+B) In zip compression, use scidiny window dictionary last w symbol compressed
+\end_layout
+
+\begin_layout Standard
+C) Growing window algorithm: dictionary keep all symbol seen so far in a
+ dictionary 
+\end_layout
+
+\begin_layout Standard
+good for small files, and for huge files.
+ Potential weakness: practical weakness: encoder hardware has a lot of memory
+ & can do large window/Dictionary
+\end_layout
+
+\begin_layout Standard
+D) Block-by-block lemper ziv algorithm: useful for proving near entropy
+ compression.
+ not the best performoing version, but easy to prove things.
+ w=
+\begin_inset Formula $n*2^{nH(x)+n\varepsilon}$
+\end_inset
+
+ 
+\begin_inset Formula $\varepsilon>O$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Match blocks of length n to the dictionary words of length n & keep or slide
+ window after.
+ 
+\end_layout
+
+\begin_layout Standard
+Ex:AA|AB|AA
+\end_layout
+
+\begin_layout Standard
+AA|BA|AB|AA
+\end_layout
+
+\begin_layout Standard
+p=1 p=0 p=2 p=1
+\end_layout
+
+\begin_layout Standard
+Decompress: intial window: 
+\end_layout
+
+\begin_layout Standard
+AA|AB|AA with transmition 1021
+\end_layout
+
+\begin_layout Standard
+so AA | transmission parralel of BA | AB | AA
+\end_layout
+
+\begin_layout Standard
+n=2, w=
+\begin_inset Formula $2^{nH(x)+n\varepsilon}$
+\end_inset
+
+=6 n= word size I match
+\end_layout
+
+\begin_layout Standard
+I need a scheme to represent unbonded integers efficiently (by a code: tutorial)
+\end_layout
+
+\begin_layout Standard
+In matlab
+\end_layout
+
+\begin_layout Standard
+1)S=rand(1,N)<
+\begin_inset Formula $P_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2)sum(s) -> # of 1's in S
+\end_layout
+
+\begin_layout Standard
+3) hist : help hist
+\end_layout
+
+\begin_layout Standard
+Typical Sequences <=> average sequences
+\end_layout
+
+\begin_layout Standard
+Binary memoryless source: p0 = 0.2, p1 = 0.8
+\end_layout
+
+\begin_layout Standard
+N=5 length of sequences 
+\end_layout
+
+\begin_layout Standard
+Sequences:
+\end_layout
+
+\begin_layout Standard
+00000 not typical
+\end_layout
+
+\begin_layout Standard
+00001not typical 
+\end_layout
+
+\begin_layout Standard
+01111 typical 
+\end_layout
+
+\begin_layout Standard
+11101 typical 
+\end_layout
+
+\begin_layout Standard
+1) how many typical sequences of length N are there? 
+\end_layout
+
+\begin_layout Standard
+there are 
+\begin_inset Formula $2^{NH(x)+N\epsilon}$
+\end_inset
+
+typical sequences of length N
+\end_layout
+
+\begin_layout Standard
+2) Probability of X1,X2...Xn being pick when generated
+\end_layout
+
+\begin_layout Standard
+3) Probability X1,X2,..Xn= specific typical sequences
+\end_layout
+
+\begin_layout Standard
+00010
+\end_layout
+
+\begin_layout Standard
+(a
+\begin_inset Formula $^{b})^{c}=a^{bc}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A specific typical sequence has probability 
+\begin_inset Formula $2^{-nH(x)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Probability that randomly observed X1,X2,...Xn is typical is (1-
+\begin_inset Formula $\varepsilon_{N})$
+\end_inset
+
+goes to I as N->
+\begin_inset Formula $\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+law of large number..
+ X1+X2+..+Xn/N -> E(X1) = 0.8 (p1=0.8, P0=0.2)
+\end_layout
+
+\begin_layout Standard
+P(typicalSet)=1
+\end_layout
+
+\begin_layout Standard
+So there are about 
+\begin_inset Formula $2^{nH(x)}$
+\end_inset
+
+typical sequences
+\end_layout
+
+\begin_layout Standard
+Connexion to Lenzel - zip 
+\end_layout
+
+\begin_layout Standard
+algorithm compressing to average entropy asympotically for large N
+\end_layout
+
+\begin_layout Standard
+Most of the time LZ algorithm is compressing a typical sequeence Xw, Xw+1,...,Xw+N
+\end_layout
+
+\begin_layout Standard
+iii- efficiency = pointers 
+\begin_inset Formula $2^{nH(x)+n\varepsilon}.$
+\end_inset
+
+ I need nH(x)+n
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+bits
+\end_layout
+
+\begin_layout Standard
+For typicals sequences I use nH(x)+n
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ bits per n symbols from source
+\end_layout
+
+\begin_layout Part
+Tutorial
+\end_layout
+
+\begin_layout Standard
+Exercice 1)
+\end_layout
+
+\begin_layout Standard
+a)
+\end_layout
+
+\begin_layout Standard
+1)Ternary Huffman code:
+\end_layout
+
+\begin_layout Standard
+Po = 0,5, P1=0,2, P2=0.15;P3=0.1;P4=0.05
+\end_layout
+
+\begin_layout Standard
+Merge P2,P3,P4, Then merge this new branch with P1, P2.
+ 
+\end_layout
+
+\begin_layout Standard
+P0:0;P1:1;P2:20;P3:21;P4:22
+\end_layout
+
+\begin_layout Standard
+2) Ternary P=0.4;P1=0.3;P2=0.2;P3=0.1
+\end_layout
+
+\begin_layout Standard
+Merge P1,P2,P3, then merge with P0.
+ But we're missing one symbol.
+ Trick: Add P4 = 0.
+ And then it works.
+ 
+\end_layout
+
+\begin_layout Standard
+b) Calculate the excpected lenght of the code: 1) E(L)=1.3 ternary alphabet/sourc
+e symbol
+\end_layout
+
+\begin_layout Standard
+2)E(L)=1.3 ternary alphabet 
+\end_layout
+
+\begin_layout Standard
+c) Calculate the entropy: 1)H(x)=
+\begin_inset Formula $\sum_{i}pi*log_{3}(I/Pi)$
+\end_inset
+
+ =1.2134 ternary alphabets/source symbol (be carrefull log base 3)
+\end_layout
+
+\begin_layout Standard
+2)H(x)=1.165 ternary alphabets/source symbol
+\end_layout
+
+\begin_layout Standard
+(d) without compression we would have 1) 2 ternary alphabets/source symbol
+\end_layout
+
+\begin_layout Standard
+Exercice 2)
+\end_layout
+
+\begin_layout Standard
+(a) a code that is uniquely decodable but not prefix:
+\end_layout
+
+\begin_layout Standard
+A1:0; A2:01
+\end_layout
+
+\begin_layout Standard
+(b) Can there be a prefix code that is not uniquely decodable? 
+\end_layout
+
+\begin_layout Standard
+Conversion:log
+\begin_inset Formula $_{2}(x)$
+\end_inset
+
+=
+\begin_inset Formula $\frac{ln(x)}{ln(2)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Conversion from H(x)
+\begin_inset Formula $_{binary}$
+\end_inset
+
+ to H(x)
+\begin_inset Formula $_{ternary}$
+\end_inset
+
+ : ln(2)/ln(3)*Hbin(x) = Hter(x) (just make the inequalities equals)
+\end_layout
+
+\begin_layout Standard
+From tutorial: ln(x)> 1-1/X
+\end_layout
+
+\begin_layout Standard
+H(X) 
+\begin_inset Formula $\leq$
+\end_inset
+
+E(L) = 
+\begin_inset Formula $\sum pi*li$
+\end_inset
+
+- 
+\begin_inset Formula $\sum pilog(1/pi)$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
