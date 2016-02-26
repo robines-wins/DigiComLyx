@@ -2726,7 +2726,7 @@ Analog sharp filter are expensive and hard to build
 \end_layout
 
 \begin_layout Standard
-2.2 AM DE-MODULATORà
+2.2 AM DE-MODULATOR
 \end_layout
 
 \begin_layout Standard
@@ -2756,27 +2756,10 @@ pi fct)
 \end_layout
 
 \begin_layout Standard
-Am(t)cos(
-\begin_inset Formula $2\pi fct)$
+\begin_inset Formula $Am(t)cos(2\pi fct)->X->A*m(t)*cos^{2}(2\pi fct)=[1/2+cos(2\pi fct*t)$
 \end_inset
 
- -> X -> A*m(t)*cos^2(
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-2
-\backslash
-pi fct) = [1/2+ cos (2
-\backslash
-pi fct*t)
+
 \end_layout
 
 \begin_layout Standard
@@ -2784,7 +2767,11 @@ pi fct*t)
 \end_layout
 
 \begin_layout Standard
-But : issue of synchronization between cos(
+But : issue of synchronization between 
+\begin_inset Formula $cos(2\pi fct)$
+\end_inset
+
+
 \family roman
 \series medium
 \shape up
@@ -2796,11 +2783,11 @@ But : issue of synchronization between cos(
 \uwave off
 \noun off
 \color none
-2
-\backslash
-pi fct) at transisiter & cos(2
-\backslash
-pi fct) at receiver
+ at transisiter & 
+\begin_inset Formula $cos(2\pi fct)$
+\end_inset
+
+ at receiver
 \end_layout
 
 \begin_layout Standard
@@ -2812,7 +2799,7 @@ danger: can be a sin
 \end_layout
 
 \begin_layout Standard
-A*m(t)cos
+
 \family roman
 \series medium
 \shape up
@@ -2824,11 +2811,10 @@ A*m(t)cos
 \uwave off
 \noun off
 \color none
-(2
-\backslash
-pi fct) + K A cos(2
-\backslash
-pi fct)
+\begin_inset Formula $A*m(t)cos(2\pi fct)+KAcos(2\pi fct)$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2856,6 +2842,371 @@ pi fct)
 
 \begin_layout Standard
 Envelope Detector - without going into frequency domain
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A*(m(t)+K)cos(2\pi fct)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+------
+\end_layout
+
+\begin_layout Section
+demodulation techniques and constant limitation.
+\end_layout
+
+\begin_layout Subsection
+via AM (FM)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf_{fm}(t)=A\cos\left(2\pi f_{c}t+2\pi k_{fm}\int_{-\infty}^{\infty}m(\tau)\,d\tau\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+volatage controlled oscilations are used to inplement fm modulation in pratice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(t)=\frac{1}{2\pi}\frac{d\phi(t)}{dt}\overset{\mbox{fm}}{=}f_{c}+K_{fm}m(t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+so 
+\begin_inset Formula $f_{inst}^{fm}$
+\end_inset
+
+ is beetwenn 
+\begin_inset Formula $\begin{cases}
+f_{c}+\min\left(m(t)\right)\\
+f_{c}+\max\left(m(t)\right)
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+demodulation:
+\end_layout
+
+\begin_layout Standard
+we re-use an AM-demodulator
+\end_layout
+
+\begin_layout Standard
+we derive 
+\begin_inset Formula $A\cos\left(2\pi f_{c}t+2\pi k_{fm}\int_{-\infty}^{\infty}m(\tau)\,d\tau\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+this gives 
+\begin_inset Formula $-A\sin\left(2\pi f_{c}t+2\pi k_{fm}\int_{-\infty}^{\infty}m(\tau)\,d\tau\right)\left(2\pi f_{c}+2\pi k_{fm}m'(t)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then we demodulate via envelope detection and we get 
+\begin_inset Formula $Am(t)2\pi K_{fm}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Via PM
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf_{pm}(t)=A\cos\left(2\pi f_{c}t+2\pi k_{pm}m(t)\right)$
+\end_inset
+
+ constant envelope signal
+\end_layout
+
+\begin_layout Standard
+volatage controlled osscialator demodulator
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f_{inst}(t)=\frac{1}{2\pi}\frac{d\phi(t)}{dt}=f_{c}+k_{pm}m(t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+globaly for a demodulator: derivate then use an AM demodulator.
+\end_layout
+
+\begin_layout Standard
+after 
+\begin_inset Formula $\frac{d}{dt}$
+\end_inset
+
+ 
+\begin_inset Formula $-A\sin\left(2\pi f_{c}t+2\pi k_{pm}m(t)\right)\left(2\pi f_{c}+2\pi k_{fm}m'(t)\right)$
+\end_inset
+
+ which not contain 
+\begin_inset Formula $m(t)$
+\end_inset
+
+ but 
+\begin_inset Formula $m'(t)$
+\end_inset
+
+ and so we get 
+\begin_inset Formula $Am'(t)2\pi k_{pm}$
+\end_inset
+
+ by integrating we retrive 
+\begin_inset Formula $Am(t)2\pi K_{fm}$
+\end_inset
+
+ and so 
+\begin_inset Formula $m(t)$
+\end_inset
+
+ but is there some bad side-effect ?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $k_{pm}$
+\end_inset
+
+/
+\begin_inset Formula $k_{fm}$
+\end_inset
+
+ are the good guys but have some limitation:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A$
+\end_inset
+
+ is limited 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+by anviable power (lots-station are on a grid)
+\end_layout
+
+\begin_layout Itemize
+And amplifier are limited and antennas
+\end_layout
+
+\begin_layout Itemize
+and allowed power is limited by governement (FCC is US, industry canada
+ here)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $k_{pm}$
+\end_inset
+
+/
+\begin_inset Formula $k_{fm}$
+\end_inset
+
+ affect the power of FM/PM signals little but they change spectrum usage.
+ So station limitation limits theese
+\end_layout
+
+\begin_layout Section
+Impact of noise on AM/FM/PM modulation
+\end_layout
+
+\begin_layout Standard
+Noise (statics) is always there:
+\end_layout
+
+\begin_layout Itemize
+snow on TV when station si off
+\end_layout
+
+\begin_layout Itemize
+statics with radio/talkei-walkie
+\end_layout
+
+\begin_layout Itemize
+spectrum anlyser
+\end_layout
+
+\begin_layout Subsubsection
+origin of background noises
+\end_layout
+
+\begin_layout Standard
+It is there and independently of the signal !
+\end_layout
+
+\begin_layout Standard
+with more detials: 
+\end_layout
+
+\begin_layout Itemize
+star/solar Rf interference
+\end_layout
+
+\begin_layout Itemize
+Background E.M.F: radiation added together (micro-wave oven, PC/laptop/phones)
+\end_layout
+
+\begin_layout Itemize
+random brownian motion fluctuation of electrons & holes in semiconductor
+ and wires
+\end_layout
+
+\begin_layout Subsection
+Descent Description/model for additive noises
+\end_layout
+
+\begin_layout Subsubsection
+additive gaussian noise white or colored
+\end_layout
+
+\begin_layout Standard
+Why gaussien ?
+\end_layout
+
+\begin_layout Enumerate
+Measurment of thermal noise
+\end_layout
+
+\begin_layout Enumerate
+because of the central limit theorem: many independant terms added together
+ become gaussian distribution
+\end_layout
+
+\begin_layout Enumerate
+gaussian noise is the 
+\emph on
+worst
+\emph default
+ in terme of damaging performance
+\end_layout
+
+\begin_layout Standard
+so we use A.W.G.N is frequence domain 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N(f)$
+\end_inset
+
+ the power spectrum of noise is constant (at 
+\begin_inset Formula $\frac{N_{0}}{2}$
+\end_inset
+
+ for all 
+\begin_inset Formula $f$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Phase is totaly random uniform
+\end_layout
+
+\begin_layout Standard
+Stastisctical description of noise sample (as 
+\begin_inset Formula $n(t)$
+\end_inset
+
+ is a random sample)
+\end_layout
+
+\begin_layout Itemize
+sample are gaussian
+\end_layout
+
+\begin_layout Itemize
+zero mean 
+\begin_inset Formula $E\left[n(t)\right]=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+no cross corelation 
+\begin_inset Formula $E\left[n(t)n(s)\right]=\begin{cases}
+0 & s\neq t\\
+\frac{N_{0}}{2}\delta(t-s) & t=s
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+relation beetween time & frequancy domain noise description
+\end_layout
+
+\begin_layout Standard
+Fourier thransform of the noise autocorrelation function gives power spectrum
+ of the noise
+\end_layout
+
+\begin_layout Standard
+We want result on system performance of AM/FM/PM: we do mesurement or simulation
+ of result
+\end_layout
+
+\begin_layout Standard
+beware of formula result
+\end_layout
+
+\begin_layout Standard
+Objective function will be signal noise ration 
+\begin_inset Formula $SNR=\frac{(avg)P_{SIGN}}{(avg)P_{NOISE)}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Impact of parameter 
+\begin_inset Formula $f_{c}$
+\end_inset
+
+,
+\begin_inset Formula $A$
+\end_inset
+
+,
+\begin_inset Formula $k_{pm}$
+\end_inset
+
+,
+\begin_inset Formula $k_{fm}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
