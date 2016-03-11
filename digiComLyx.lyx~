@@ -97,7 +97,7 @@ Course grading system
 \end_layout
 
 \begin_layout Itemize
-Midterm, after SPRING BREAK (march 10), open note 35%
+Midterm, Wensday 30, open note 35%
 \end_layout
 
 \begin_layout Itemize
@@ -3204,6 +3204,223 @@ Impact of parameter
 
 ,
 \begin_inset Formula $k_{fm}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+base case:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SNR=\frac{P_{M}}{P_{N}}=\frac{P_{M}}{\int_{-w}^{w}\frac{N_{0}}{2}dt}=\frac{P_{M}}{N_{0}w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+mesure in practice (Power meter or spectral annaliser with power spectrum)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{Message}$
+\end_inset
+
+ aither know or 
+\begin_inset Formula $\int_{f_{C}-W}^{f_{c}+W}Power_{m}(f)\,df=P_{Message}$
+\end_inset
+
+ in Watts
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{noise}=\int_{f_{C}-W}^{f_{c}+W}P_{noise}(f)\,df$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Typical number for SNL :unit of dB (
+\begin_inset Formula $10\log_{10}\frac{P_{Mesaage}}{P_{Noise}}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SNR=1=0$
+\end_inset
+
+ dB is not good, poor quality, unable to understand speech
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $10\mbox{ db }\Leftrightarrow SNR=10$
+\end_inset
+
+ OK legible speech with imparment
+\end_layout
+
+\begin_layout Itemize
+20 db much better not Hi-FI (SNR+100)
+\end_layout
+
+\begin_layout Itemize
+30 db Landline phone Speech OK
+\end_layout
+
+\begin_layout Itemize
+40 db Good Landline phone not recording music quality
+\end_layout
+
+\begin_layout Itemize
+50 db Peak in practice
+\end_layout
+
+\begin_layout Itemize
+100 db Ok in theory, not practical, why ? 
+\end_layout
+
+\begin_layout Paragraph
+Note:
+\end_layout
+
+\begin_layout Standard
+Improve 
+\begin_inset Formula $P_{M}$
+\end_inset
+
+ by linear amplifier with 
+\begin_inset Formula $Am(t)$
+\end_inset
+
+ new pessage power is 
+\begin_inset Formula $A^{2}P_{Message}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+linear amplifier operating curve saturation.
+\end_layout
+
+\begin_layout Standard
+another reason for not pratical: part of the noise 
+\emph on
+depend of 
+\emph default
+the signal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n(t)=n_{randommoment}(t)+n_{humaingeneraed}(t)+n_{cosmic}(t)+n_{signal(t)}$
+\end_inset
+
+ but the last term is small
+\end_layout
+
+\begin_layout Paragraph
+Baseline SNR case baseband
+\end_layout
+
+\begin_layout Standard
+received signal = 
+\begin_inset Formula $m(t)+n(t)$
+\end_inset
+
+ can AWGN (the worst,no correlation)/ poisson shot noise/grass-Markov noise
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{M}$
+\end_inset
+
+ fixed 
+\begin_inset Formula $P_{AWGN}(f)=\frac{N_{0}}{2}$
+\end_inset
+
+ so 
+\begin_inset Formula $SNR=\frac{P_{M}}{WN_{0}}$
+\end_inset
+
+ linear amplifier at receiver end 
+\begin_inset Formula $A\left[m(t)+n_{AWGN}(t)\right]=Am(t)+AN_{AWGN}(t)$
+\end_inset
+
+ ans so 
+\begin_inset Formula $P_{sign}=AP_{M}$
+\end_inset
+
+ and we get noise power 
+\begin_inset Formula $=A^{2}N_{0}W$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+AM receiver SNR after demodulation
+\end_layout
+
+\begin_layout Paragraph
+DSB AM supressedncarrier
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\alpha Am(t)\cos(2\pi f_{c}t)$
+\end_inset
+
+ with 
+\begin_inset Formula $\alpha=\frac{K}{d^{3}}$
+\end_inset
+
+ channel attenuation, 
+\begin_inset Formula $A$
+\end_inset
+
+ transmited amplifier
+\end_layout
+
+\begin_layout Standard
+this gives 
+\begin_inset Formula $SNR_{DEM}^{BSB-AM-SC}=\frac{\alpha^{2}A^{2}P_{M}}{KN_{0}W}$
+\end_inset
+
+ and we want 
+\begin_inset Formula $A$
+\end_inset
+
+ as big as possible but of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is too big the reception is poor.
+ note there's no 
+\begin_inset Formula $f_{c}$
+\end_inset
+
+ dependance
+\end_layout
+
+\begin_layout Standard
+Solution: makes 
+\begin_inset Formula $A$
+\end_inset
+
+ bigger or multiple antenna
+\end_layout
+
+\begin_layout Standard
+for all other 
+\begin_inset Formula $AM$
+\end_inset
+
+ signal it's the same formula : 
+\begin_inset Formula $SNR_{DEMOD}^{FM}=\frac{\alpha^{2}A^{2}K_{FM}}{N_{0}W^{3}}$
 \end_inset
 
 
