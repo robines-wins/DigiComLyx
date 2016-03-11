@@ -3430,6 +3430,220 @@ for FM:
 
 \end_layout
 
+\begin_layout Standard
+Impact of noise on analog modulation/demodulation
+\end_layout
+
+\begin_layout Standard
+signal to noise ratio after modulation/demodulation
+\end_layout
+
+\begin_layout Standard
+SN = Psignal/Pnoise
+\end_layout
+
+\begin_layout Standard
+Psignal = PM = 
+\begin_inset Formula $1/2T$
+\end_inset
+
+
+\begin_inset Formula $\int$
+\end_inset
+
+m
+\begin_inset Formula $^{2}(t)$
+\end_inset
+
+dt
+\end_layout
+
+\begin_layout Standard
+Am(t) -> Power 
+\begin_inset Formula $A^{2}PM$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pnoise = 
+\begin_inset Formula $\int_{-W}^{W}No/2df=2WNo/2=WNo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SNR = PM/WNo
+\end_layout
+
+\begin_layout Standard
+Can we do better/worse with am/fm/pm?
+\end_layout
+
+\begin_layout Standard
+DSB-AM-SC
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $rf_{AM}=Acos(2*\pi*fct)m(t)$
+\end_inset
+
+ x 
+\begin_inset Formula $\alpha$
+\end_inset
+
++ 
+\begin_inset Formula $n_{awgw}$
+\end_inset
+
+=
+\begin_inset Formula $\alpha*A*m(t)cos(2\pi fct)+\mbox{n\_awgv}$
+\end_inset
+
+ pass into noise limit filter x 
+\begin_inset Formula $cos(2\pi fct)$
+\end_inset
+
+ = 
+\begin_inset Formula $A\alpha m(t)/2$
+\end_inset
+
++
+\begin_inset Formula $A\alpha m(t)cos(2\pi2fct)$
+\end_inset
+
++ n(t)cos(
+\begin_inset Formula $2\pi fct)$
+\end_inset
+
+ pass into filter -w to w = 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+A
+\backslash
+alpha m(t)/2 +noise
+\end_layout
+
+\begin_layout Standard
+Linear nature of modulation/demodulation => noise & signal go through 
+\begin_inset Quotes eld
+\end_inset
+
+separately
+\begin_inset Quotes erd
+\end_inset
+
+ no cross term 
+\end_layout
+
+\begin_layout Standard
+Demod = PM*
+\begin_inset Formula $\alpha^{2}A^{2}/4$
+\end_inset
+
+ quality of demod goes down with distance from transimmeter 
+\begin_inset Formula $\alpha^{2}$
+\end_inset
+
+ / Big antennas/amplification for coverage
+\end_layout
+
+\begin_layout Standard
+Part 2 of HW3 
+\end_layout
+
+\begin_layout Standard
+SNR 
+\end_layout
+
+\begin_layout Standard
+SSB-AM
+\end_layout
+
+\begin_layout Standard
+K*A
+\begin_inset Formula $^{2}$
+\end_inset
+
+
+\begin_inset Formula $\alpha^{2}$
+\end_inset
+
+PM/NoW
+\end_layout
+
+\begin_layout Standard
+FM noise demodulation: (counter intuitive answer)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Acos(2\pi fct+2\pi K_{FM}\int_{-inf}^{t}m(\tau)d\tau$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A cost power wise BUT large increases Kfm bandwidth use
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $K_{FM}$
+\end_inset
+
+ no cost power-wise
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P^{FM}DemodSignal$
+\end_inset
+
+ = 
+\begin_inset Formula $A^{2}\alpha^{2}\pi^{2}KFM*PM$
+\end_inset
+
+ where KFM is a surprise term
+\end_layout
+
+\begin_layout Standard
+Noise affected by FM demodulation.
+ Biggest Impact is due to 
+\begin_inset Formula $d/dt$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subparagraph
+FoTo Properties:
+\end_layout
+
+\begin_layout Standard
+differentiation properties
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SNR^{FMDEMOD}=cost$
+\end_inset
+
+
+\begin_inset Formula $A^{2}\alpha^{2}PMK_{FM}^{2}/Noww^{2}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Part
 Tutorial
 \end_layout
