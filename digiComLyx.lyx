@@ -3430,6 +3430,128 @@ for FM:
 
 \end_layout
 
+\begin_layout Subsection
+Analog demodulation with noise
+\end_layout
+
+\begin_layout Paragraph
+DSBAM (SC)
+\end_layout
+
+\begin_layout Standard
+kandlzkvnzDVKN%vd
+\end_layout
+
+\begin_layout Chapter
+Digital modulation, demodulation and noise impact
+\end_layout
+
+\begin_layout Paragraph
+Motivation
+\end_layout
+
+\begin_layout Standard
+New systems are digital, 1G phone where analog (2-4G are digital)
+\end_layout
+
+\begin_layout Standard
+Digital comm systems do much better than annalog
+\end_layout
+
+\begin_layout Itemize
+better spectrum usage (compression, bandiwth efficient modulation scheme)
+\end_layout
+
+\begin_layout Itemize
+Noise error robustness (error control code) can fix side error due to Language
+ redundency
+\end_layout
+
+\begin_layout Itemize
+NO background noise
+\end_layout
+
+\begin_layout Itemize
+Lot of design re-use for digital electronic circuit
+\end_layout
+
+\begin_layout Paragraph
+objectives:
+\end_layout
+
+\begin_layout Itemize
+Physical channel (wire, free space, optical fiber) are annalog in time and
+ amplitude
+\end_layout
+
+\begin_layout Itemize
+Data source are most often annalog (speech, music)
+\end_layout
+
+\begin_layout Standard
+We will do essentialy digital transmission over annalog channels.
+\end_layout
+
+\begin_layout Standard
+But : digitizing annalog sources: senpling + quantize a analog signal can
+ completly be represented by it's sample if sample frequancy > 2* (max)
+ frquency of the signal (
+\begin_inset Formula $w$
+\end_inset
+
+ in FT ) and if 
+\begin_inset Formula $m(t)$
+\end_inset
+
+ can be perfectly reconstructed by low pass filtering a 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ (same thing has havign a max frequency)
+\end_layout
+
+\begin_layout Standard
+reconstruction: see ICC
+\end_layout
+
+\begin_layout Standard
+Digital signal are vectors.
+ quantization is quantazition.
+ 
+\end_layout
+
+\begin_layout Standard
+quantizer rule each bit you added means about 
+\begin_inset Formula $+6\mbox{dB}$
+\end_inset
+
+ in term in SQNR (signal to quantization error/noise ratio)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SQNR=\frac{\frac{1}{2N-1}\sum_{-N}^{N}m^{2}\left[n\right]}{\frac{1}{2N-1}\sum_{-N}^{N}e^{2}[n]}=\frac{P_{M}}{P_{QE}}$
+\end_inset
+
+ where 
+\begin_inset Formula $e[n]$
+\end_inset
+
+ is the quantization error of each quantum it's fixed
+\end_layout
+
+\begin_layout Paragraph
+Note:
+\end_layout
+
+\begin_layout Itemize
+Landline Phone (8 bits/sample) = 48 dB
+\end_layout
+
+\begin_layout Itemize
+CD (16 bits/sample) = 96 dB
+\end_layout
+
 \begin_layout Part
 Tutorial
 \end_layout
