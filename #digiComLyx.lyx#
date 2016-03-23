@@ -3996,11 +3996,7 @@ i
 \begin_inset Formula $\epsilon$
 \end_inset
 
-{0,1,...,7} 8 waveforms but only 2 orthogonal components 
-\end_layout
-
-\begin_layout Standard
-orthogonality of waveforms <=> orthogonality dimension in signal space
+{0,1,...,7}
 \end_layout
 
 \begin_layout Part
