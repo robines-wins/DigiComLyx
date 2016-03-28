@@ -4003,6 +4003,10 @@ i
 orthogonality of waveforms <=> orthogonality dimension in signal space
 \end_layout
 
+\begin_layout Standard
+3 FSK cosines are orthogonal
+\end_layout
+
 \begin_layout Part
 Tutorial
 \end_layout
